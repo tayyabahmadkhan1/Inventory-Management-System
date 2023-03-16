@@ -1,0 +1,21 @@
+<h1 style="background-color:darkcyan; text-align: center; margin-top: 10px;">Warehouse</h1>
+<br>
+<br>
+<button nz-button nzType="primary" (click)= "openComponent()">Add New Warehouse</button>
+<br>
+<br>
+<button (click)= "GetWarehouse()">Get All Locations</button>
+  <ul>
+    <li *ngFor= " let item of apiList">
+        <label >Id: </label>
+        <span> {{item.warehouse_Id}} </span>
+        <br>
+        <label >Location: </label>
+        <span style="font-size: large;"> {{item.warehouse_location}} </span>
+
+        <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "editWarehouse(item)">Edit</button>
+        <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteWarehouse(item.warehouse_Id)">Delete</button>
+        <br>
+        <br>
+    </li>
+  </ul>

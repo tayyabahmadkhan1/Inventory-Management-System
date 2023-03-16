@@ -1,0 +1,24 @@
+<h1 style="background-color:darkolivegreen; text-align: center; margin-top: 10px;">Admin</h1>
+<br>
+<br>
+<button nz-button nzType="primary" (click)= "openComponent()">Add Admin</button>
+<br>
+<br>
+<button (click)= "getData()">Get Data</button>
+  <!-- <pre>{{ apiList | json }}</pre> -->
+  <ul>
+    <li *ngFor= " let item of apiList">
+        <label >Name: </label>
+        <span> {{item.name}} </span>
+        <br>
+        <label >Userame: </label>
+        <span> {{item.username}} </span>
+        <br>
+        <label >Password: </label>
+        <span> {{item.password}} </span>
+
+        <button style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "editUser(item)">Edit</button>
+        <br>
+        <br>
+    </li>
+  </ul>

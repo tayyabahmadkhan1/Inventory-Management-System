@@ -25,7 +25,7 @@ namespace InternProject.Controllers
 
 
         [HttpPost("Add_UpdateAdmin")]
-        public bool Add_UpdateAdmin(Admin AdminParameter)
+        public bool Add_UpdateAdmin([FromForm]Admin AdminParameter)
         {
             return _AdminManager.Add_UpdateAdmin(AdminParameter);
         }

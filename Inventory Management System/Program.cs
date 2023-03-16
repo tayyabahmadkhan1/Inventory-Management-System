@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using IMS.Business.Interfaces;
 using IMS.Models;
 using IMS.Business.Managers;
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IItemManager, ItemManager>();
 builder.Services.AddScoped<IOrderManager, OrderManager>();
 builder.Services.AddScoped<IWarehouseManager, WarehouseManager>();
 builder.Services.AddScoped<IInventoryManager, InventoryManager>();
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -28,10 +30,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+});
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

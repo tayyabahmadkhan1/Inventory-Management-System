@@ -22,7 +22,7 @@ namespace InternProject.Controllers
 
 
         [HttpPost("Add_UpdateItem")]
-        public bool Add_UpdateItem(Item ItemParameter)
+        public bool Add_UpdateItem([FromForm] Item ItemParameter)
         {
             return _ItemManager.Add_UpdateItem(ItemParameter);
         }

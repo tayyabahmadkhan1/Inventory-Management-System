@@ -1,0 +1,8 @@
+<form [formGroup]= "WarehouseForm" (ngSubmit)= "onSubmit()">
+    <div>
+      <label for= "location">Warehouse Location:</label>
+      <input style="margin-left: 10px;" id= "location" type="text" formControlName="WarehouseLocation" placeholder="Enter City Name">
+    </div>
+    <br>
+    <button style="color: beige; background-color: rgb(64, 133, 64);" type="submit" >Submit</button>
+  </form>

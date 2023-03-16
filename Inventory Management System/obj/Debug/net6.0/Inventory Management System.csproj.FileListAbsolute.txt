@@ -91,3 +91,9 @@ C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management S
 C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\IMS.Business.pdb
 C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\IMS.Data.pdb
 C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\IMS.Models.pdb
+C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\System.Web.Cors.dll
+C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\System.Web.Http.dll
+C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\System.Web.Http.Cors.dll
+C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Tayyab\Desktop\C# EF\Inventory Management System\Inventory Management System\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

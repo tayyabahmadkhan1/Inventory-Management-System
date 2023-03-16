@@ -20,7 +20,7 @@ namespace Inventory_Management_System.Controllers
 
 
         [HttpPost("Add_UpdateInventory")]
-        public bool Add_UpdateInventory(Inventory InventoryParameter)
+        public bool Add_UpdateInventory([FromForm] Inventory InventoryParameter)
         {
             return _InventoryManager.Add_UpdateInventory(InventoryParameter);
         }

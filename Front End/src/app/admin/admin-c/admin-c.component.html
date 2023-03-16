@@ -1,0 +1,18 @@
+<form [formGroup]= "AdminForm" (ngSubmit)= "onSubmit()">
+    <div>
+      <label for="name">Name: </label>
+      <input style="margin-left: 10px;" id= "name" type="text" formControlName= "AdminName" placeholder="Full Name">
+    </div>
+    <br>
+    <div>
+        <label for="name">Username: </label>
+        <input style="margin-left: 10px;" id= "name" type="text" formControlName= "Username" placeholder="Username">
+      </div>
+      <br>
+    <div>
+      <label for= "password">Password:</label>
+      <input style="margin-left: 10px;" id= "password" type="password" formControlName="AdminPassword" placeholder="Password">
+    </div>
+    <br>
+    <button style="color: beige; background-color: rgb(51, 163, 51);" type="submit" >Submit</button>
+  </form>

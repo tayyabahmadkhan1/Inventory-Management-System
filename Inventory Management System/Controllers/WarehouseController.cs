@@ -20,7 +20,7 @@ namespace Inventory_Management_System.Controllers
 
 
         [HttpPost("Add_UpdateWarehouse")]
-        public bool Add_UpdateWarehouse(Warehouse WarehouseParameter)
+        public bool Add_UpdateWarehouse([FromForm] Warehouse WarehouseParameter)
         {
             return _WarehouseManager.Add_UpdateWarehouse(WarehouseParameter);
         }
@@ -41,7 +41,7 @@ namespace Inventory_Management_System.Controllers
 
 
         [HttpDelete("DeleteWarehouse")]
-        public bool DeleteWarehouse(Guid WarehouseID)
+        public bool DeleteWarehouse([FromQuery] Guid WarehouseID)
         {
             return _WarehouseManager.DeleteWarehouse(WarehouseID);
         }

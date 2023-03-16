@@ -22,7 +22,7 @@ namespace InternProject.Controllers
 
 
         [HttpPost("Add_UpdateOrder")]
-        public bool Add_UpdateOrder(Order OrderParameter)
+        public bool Add_UpdateOrder([FromForm] Order OrderParameter)
         {
             return _OrderManager.Add_UpdateOrder(OrderParameter);
         }

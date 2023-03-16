@@ -1,0 +1,93 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="300px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAB3CAMAAAAO5y+4AAAAV1BMVEVIcKL///9FbqH8/P0iWpZZfKlRdqVMc6Q3ZZw9aZ65xdjp7PJggKyYq8bM1eI/a5+Inr709vmQpMJlhK4vYZqwvtLa4OmpuM/CzNx7lLhyjbPS2uWis8stYCtsAAACX0lEQVRoge2X3XarIBCFBaIBqRKjsfl7/+c8KqYwVJA20Iuz5rtwLQdhr43DAEWBIAiCIAiCIAiCIAjyf0KXxy76O6er1RzH0bC8f5R7VOowcAXGr+z2KNmqI1/UfHonETBZnwQ3ykJaja2Isvsb3Znuk6p1DFraDReeVZcQ2a/O1MkOf+b1O8F67Vic7eg1t99JWFtTNzsoo1L6Ld3VG4WdTjET/Z4u0YOIzo7J/H7XJBItCNZDdt1xySz4gwlp9lPryN7SZbpoDh0M3/Z+MT1e2xePRji6j/Y7D6hQLrpwBc8rbDe3uGH+FuhWA3cZeA+83fQSHkYo3JUqLOsCdD+2MlPc7U/O2hgtmSMcvTHF6hbclmjWCYU1a0JGlcsf6coN3WK4OMIPHnSsDHRbVxj0+6Zuwa+OcHhjOhvuaktXPZsXz576dSl3Uj1YMO31e3XX76LL7ZGUd57nBiep10W2rRuqV9u6Hr+TY+EIj37Dv9D1+i2ospvI1yrL7Hc+VsKCKZVvptPqTlsxrB9ew0nnuXCrGRl9W2Jiv279YNulJ71fp1n3+Au/hQKV2le00uvS0s7p1vOD088zbPclVnq/2XR3/MJ5fvyZX7iQ6nR59c2vtUELLhp7hK3/kMgvrcwG3TwvzpZ0T1c3XN2e+Ony1eegrvesk9cv85448ur6j3ZZ53n0bvtZ/coq6bku1q8M3ZHy+a1p6GqWyS9r7+FLf9WxF6suM4Fe65rAy6+JLLoM0I31qRp2roP0YODO+0H3tQK6+gwwArrMDPyHl18EQRAEQRAEQRAEQRAkyD9DEjE6mJNkwwAAAABJRU5ErkJggg==" alt="logo">
+        <h1>Inventory Management System</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <!-- <li nz-submenu nzOpen nzTitle="Admin Dashboard" nzIcon="home">
+          <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/welcome">Welcome</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/admin">Admin Details</a>
+          </li>
+          </ul>
+        </li> -->
+
+
+        <li
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      [nzTooltipTitle]="isCollapsed ? 'Admin' : ''"
+      >
+      <span nz-icon nzType="mail"></span>
+      <span routerLink="/admin">Admin</span>
+      </li>
+
+      <li
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      [nzTooltipTitle]= "isCollapsed ? 'Warehouse' : ''"
+      >
+      <span nz-icon nzType="home"></span>
+      <span routerLink="/warehouse">Warehouse</span>
+      </li>
+
+          
+      <li nz-submenu nzTitle="Orders" nzIcon= "gift" nzMatchRouter>
+      </li>
+
+      <li nz-submenu nzTitle="Items" nzIcon= "appstore" nzMatchRouter>
+      </li>
+
+      <li nz-submenu nzTitle="Inventory" nzIcon= "shop" nzMatchRouter>
+      </li>
+        <ul>
+          <!-- <li nz-menu-item nzMatchRouter>
+            <a routerLink="/welcome">Welcome</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/admin">Admin</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Workplace</a>
+          </li> -->
+        </ul>
+      <!-- <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a>Basic Form</a>
+          </li>
+        </ul>
+      </li> -->
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

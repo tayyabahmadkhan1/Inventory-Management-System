@@ -3,6 +3,7 @@ import { FormGroup,FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Input } from '@angular/core';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 @Component({
   selector: 'app-admin-c',
@@ -12,7 +13,9 @@ import { NzDrawerRef } from 'ng-zorro-antd/drawer';
 export class AdminCComponent {
 
   @Input() value: any;
+  @Input() getA !:()=>void;
   AdminForm :FormGroup
+  visible = true;
 
   constructor(private drawerRef: NzDrawerRef<string>, private http: HttpClient) {
     this.AdminForm = new FormGroup({
@@ -52,7 +55,9 @@ export class AdminCComponent {
     
 
     this.http.post('https://localhost:7089/api/Admin/Add_UpdateAdmin', formData ).subscribe(
-      (response) => console.log(response)
+      (response) => {console.log(response);
+        this.getA();
+      }
     );
 
     this.drawerRef.close();

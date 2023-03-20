@@ -46,13 +46,16 @@ export class AdminDrawerComponent {
   }
 
   openComponent(): void {
-    const drawerRef = this.drawerService.create<AdminCComponent, { value: string }, string>({
+    const drawerRef = this.drawerService.create<AdminCComponent, { getA:any}, string>({
       nzTitle: 'Admin Form',
       nzFooter: '',
       nzExtra: '',
       nzContent: AdminCComponent,
       nzContentParams: {
-        value: this.value
+        value: this.value,
+        getA : () => {
+          this.getData();
+      }
       }
     });
 
@@ -70,11 +73,14 @@ export class AdminDrawerComponent {
 
   editUser(item: any) 
     {
-      const drawerRef = this.drawerService.create<AdminCComponent, { value: any }, string>({
+      const drawerRef = this.drawerService.create<AdminCComponent, {getA:any }, string>({
         nzTitle: 'AdminForm',
         nzContent: AdminCComponent,
         nzContentParams: {
-          value: item
+          value: item,
+          getA : () => {
+            this.getData();
+        }
         }
       });
 

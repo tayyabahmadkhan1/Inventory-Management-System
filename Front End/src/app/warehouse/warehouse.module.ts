@@ -6,6 +6,11 @@ import { WarehouseDrawerComponent } from './warehouse-drawer/warehouse-drawer.co
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzListModule } from 'ng-zorro-antd/list';
+import {NzNotificationService} from 
+'ng-zorro-antd/notification';
 
 const routes: Routes = [
   { path: '', component: WarehouseDrawerComponent }
@@ -20,10 +25,13 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     NzFormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzTypographyModule,
+    NzListModule,
+    NzButtonModule
   ],
   exports: [RouterModule],
   bootstrap: [WarehouseCComponent],
-  providers:[NzDrawerService]
+  providers:[NzDrawerService,NzNotificationService]
 })
 export class WarehouseModule { }

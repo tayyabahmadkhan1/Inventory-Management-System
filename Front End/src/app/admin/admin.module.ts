@@ -6,6 +6,9 @@ import { AdminDrawerComponent } from './admin-drawer/admin-drawer.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import {NzButtonModule} from 'ng-zorro-antd/button';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 
 const routes: Routes = [
@@ -17,12 +20,16 @@ const routes: Routes = [
   declarations: [
     AdminCComponent,
     AdminDrawerComponent
+    
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     NzFormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzDrawerModule,
+    NzButtonModule,
+    NzListModule
   ],
   exports: [RouterModule],
   bootstrap: [AdminCComponent],

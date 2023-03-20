@@ -1,11 +1,11 @@
-<h1 style="background-color:darkolivegreen; text-align: center; margin-top: 10px;">Admin</h1>
+<!-- <h1 style="background-color:darkolivegreen; text-align: center; margin-top: 10px;">Admin</h1>
 <br>
 <br>
 <button nz-button nzType="primary" (click)= "openComponent()">Add Admin</button>
 <br>
 <br>
 <button (click)= "getData()">Get Data</button>
-  <!-- <pre>{{ apiList | json }}</pre> -->
+
   <ul>
     <li *ngFor= " let item of apiList">
         <label >Name: </label>
@@ -21,4 +21,36 @@
         <br>
         <br>
     </li>
-  </ul>
+  </ul> -->
+
+
+  <h1 style="background-color:darkolivegreen; text-align: center; margin-top: 10px;">Admin</h1>
+  <br>
+  <br>
+  <button nz-button nzType="primary" (click)= "openComponent()">Add Admin</button>
+  <br>
+  <br>
+  <button (click)= "getData()">Get Data</button>
+  
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of apiList">
+        <td>{{ item.name }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.password }}</td>
+        <td>
+          <button style="color: beige; background-color: coral;" type="button" (click)= "editUser(item)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  

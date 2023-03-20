@@ -1,4 +1,4 @@
-<h1 style="background-color:darkcyan; text-align: center; margin-top: 10px;">Warehouse</h1>
+<!-- <h1 style="background-color:darkcyan; text-align: center; margin-top: 10px;">Warehouse</h1>
 <br>
 <br>
 <button nz-button nzType="primary" (click)= "openComponent()">Add New Warehouse</button>
@@ -18,4 +18,34 @@
         <br>
         <br>
     </li>
-  </ul>
+  </ul> -->
+
+  <h1 style="background-color:darkcyan; text-align: center; margin-top: 10px;">Warehouse</h1>
+  <br>
+  <br>
+  <button nz-button nzType="primary" (click)= "openComponent()">Add New Warehouse</button>
+  <br>
+  <br>
+  <button (click)= "GetWarehouse()">Get All Locations</button>
+  
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of apiList">
+        <td>{{ item.warehouse_Id }}</td>
+        <td>{{ item.warehouse_location }}</td>
+        <td>
+          <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "editWarehouse(item)">Edit</button>
+        <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteWarehouse(item.warehouse_Id)">Delete</button>
+        <br>
+        <br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

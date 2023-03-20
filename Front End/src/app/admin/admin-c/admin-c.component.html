@@ -1,4 +1,4 @@
-<form [formGroup]= "AdminForm" (ngSubmit)= "onSubmit()">
+<!-- <form [formGroup]= "AdminForm" (ngSubmit)= "onSubmit()">
     <div>
       <label for="name">Name: </label>
       <input style="margin-left: 10px;" id= "name" type="text" formControlName= "AdminName" placeholder="Full Name">
@@ -6,7 +6,7 @@
     <br>
     <div>
         <label for="name">Username: </label>
-        <input style="margin-left: 10px;" id= "name" type="text" formControlName= "Username" placeholder="Username">
+        <input style="margin-left: 10px;" id= "Uname" type="text" formControlName= "Username" placeholder="Username">
       </div>
       <br>
     <div>
@@ -15,4 +15,31 @@
     </div>
     <br>
     <button style="color: beige; background-color: rgb(51, 163, 51);" type="submit" >Submit</button>
-  </form>
+  </form> -->
+
+
+
+    <form nz-form [formGroup]="AdminForm" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Name</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="AdminName" placeholder="Full Name">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Username</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="Username" placeholder="Username">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired>Password</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="password" formControlName="AdminPassword" placeholder="Password">
+        </nz-form-control>
+      </nz-form-item>
+      <div class="button-container">
+        <button nz-button [nzType]= "'primary'">Submit</button>
+      </div>
+    </form>
+  

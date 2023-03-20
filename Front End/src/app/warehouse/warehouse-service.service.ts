@@ -12,9 +12,7 @@ export class WarehouseServiceService {
 
   AddWarehouse (formData : FormData){
 
-    this.http.post("https://localhost:7089/api/Warehouses/Add_UpdateWarehouse",formData).subscribe(Response => {
-      console.log(Response);
-    });
+    return this.http.post("https://localhost:7089/api/Warehouses/Add_UpdateWarehouse",formData);
   }
   
   GetWarehouse(){

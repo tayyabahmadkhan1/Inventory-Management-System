@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WarehouseCComponent } from './warehouse-c/warehouse-c.component';
 import { RouterModule,Routes } from '@angular/router';
-import { WarehouseDrawerComponent } from './warehouse-drawer/warehouse-drawer.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,15 +10,17 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
+import { OrderDrawerComponent } from './order-drawer/order-drawer.component';
+import { OrderCComponent } from './order-c/order-c.component';
 
 const routes: Routes = [
-  { path: '', component: WarehouseDrawerComponent }
+  { path: '', component: OrderDrawerComponent }
 ];
 
 @NgModule({
   declarations: [
-    WarehouseCComponent,
-    WarehouseDrawerComponent
+    OrderCComponent,
+    OrderDrawerComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +34,7 @@ const routes: Routes = [
     NzDividerModule
   ],
   exports: [RouterModule],
-  bootstrap: [WarehouseCComponent],
+  bootstrap: [OrderCComponent],
   providers:[NzDrawerService,NzNotificationService]
 })
-export class WarehouseModule { }
+export class OrderModule { }

@@ -20,7 +20,6 @@ export class WarehouseServiceService {
   }
 
   DeleteWarehouse (id : any){
-    console.log("ID",id)
     return this.http.delete(`https://localhost:7089/api/Warehouses/DeleteWarehouse?WarehouseID=${id}`);
   }
 }

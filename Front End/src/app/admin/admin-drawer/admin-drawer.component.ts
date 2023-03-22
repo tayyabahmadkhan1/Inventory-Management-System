@@ -45,6 +45,10 @@ export class AdminDrawerComponent {
     });
   }
 
+  ngOnInit(){
+    this.getData();
+  }
+
   openComponent(): void {
     const drawerRef = this.drawerService.create<AdminCComponent, { getA:any}, string>({
       nzTitle: 'Admin Form',

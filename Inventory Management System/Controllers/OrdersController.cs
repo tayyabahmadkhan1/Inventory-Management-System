@@ -43,7 +43,7 @@ namespace InternProject.Controllers
 
 
         [HttpDelete("DeleteOrder")]
-        public bool DeleteOrder(Guid OrderID)
+        public bool DeleteOrder([FromQuery] Guid OrderID)
         {
             return _OrderManager.DeleteOrder(OrderID);
         }

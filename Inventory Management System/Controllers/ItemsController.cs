@@ -43,7 +43,7 @@ namespace InternProject.Controllers
 
 
         [HttpDelete("DeleteItem")]
-        public bool DeleteItem(Guid ItemID)
+        public bool DeleteItem([FromQuery] Guid ItemID)
         {
             return _ItemManager.DeleteItem(ItemID);
         }

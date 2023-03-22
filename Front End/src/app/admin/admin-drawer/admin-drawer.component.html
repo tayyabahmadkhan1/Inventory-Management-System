@@ -1,56 +1,30 @@
-<!-- <h1 style="background-color:darkolivegreen; text-align: center; margin-top: 10px;">Admin</h1>
-<br>
-<br>
-<button nz-button nzType="primary" (click)= "openComponent()">Add Admin</button>
-<br>
-<br>
-<button (click)= "getData()">Get Data</button>
-
-  <ul>
-    <li *ngFor= " let item of apiList">
-        <label >Name: </label>
-        <span> {{item.name}} </span>
-        <br>
-        <label >Userame: </label>
-        <span> {{item.username}} </span>
-        <br>
-        <label >Password: </label>
-        <span> {{item.password}} </span>
-
-        <button style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "editUser(item)">Edit</button>
-        <br>
-        <br>
-    </li>
-  </ul> -->
-
-
-  <h1 style="background-color:darkolivegreen; text-align: center; margin-top: 10px;">Admin</h1>
+  <h1 style="background-color:rgb(55, 133, 94); text-align: center; margin-top: 10px;">Admin</h1>
   <br>
   <br>
   <button nz-button nzType="primary" (click)= "openComponent()">Add Admin</button>
   <br>
   <br>
-  <button (click)= "getData()">Get Data</button>
   
-  <table style="width: 100%;">
+  <nz-table style="width: 100%;" [nzData]= "apiList">
     <thead>
       <tr>
         <th>Name</th>
         <th>Username</th>
         <th>Password</th>
-        <th>Edit</th>
+        <th>Action</th>
       </tr>
+
     </thead>
+    
     <tbody>
-      <tr *ngFor="let item of apiList">
-        <td>{{ item.name }}</td>
-        <td>{{ item.username }}</td>
-        <td>{{ item.password }}</td>
+      <tr *ngFor= "let item of apiList">
+        <td >{{ item.name }}</td>
+        <td >{{ item.username }}</td>
+        <td >{{ item.password }}</td>
+
         <td>
-          <button style="color: beige; background-color: coral;" type="button" (click)= "editUser(item)">Edit</button>
+          <a (click)= "editUser(item)">EDIT一 {{item.name}}</a>
         </td>
       </tr>
     </tbody>
-  </table>
-  
-  
+  </nz-table>

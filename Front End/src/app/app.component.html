@@ -30,7 +30,7 @@
       nzTooltipPlacement="right"
       [nzTooltipTitle]="isCollapsed ? 'Admin' : ''"
       >
-      <span nz-icon nzType="mail"></span>
+      <span nz-icon nzType="github"></span>
       <span routerLink="/admin">Admin</span>
       </li>
 
@@ -44,15 +44,46 @@
       <span routerLink="/warehouse">Warehouse</span>
       </li>
 
+      <li
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      [nzTooltipTitle]= "isCollapsed ? 'Order' : ''"
+      >
+      <span nz-icon nzType= "gift"></span>
+      <span routerLink="/order">Orders</span>
+      </li>
+
+      <li
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      [nzTooltipTitle]= "isCollapsed ? 'Items' : ''"
+      >
+      <span nz-icon nzType="appstore"></span>
+      <span routerLink="/Items">Items</span>
+      </li>
+
+      <li
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      [nzTooltipTitle]= "isCollapsed ? 'Inventory' : ''"
+      >
+      <span nz-icon nzType="shop"></span>
+      <span routerLink="/Inventory">Inventory</span>
+      </li>
+
           
-      <li nz-submenu nzTitle="Orders" nzIcon= "gift" nzMatchRouter>
-      </li>
+      <!-- <li nz-submenu nzTitle="Orders" nzIcon= "gift" nzMatchRouter>
+      </li> -->
 
-      <li nz-submenu nzTitle="Items" nzIcon= "appstore" nzMatchRouter>
-      </li>
+      <!-- <li nz-submenu nzTitle="Items" nzIcon= "appstore" nzMatchRouter>
+      </li> -->
 
-      <li nz-submenu nzTitle="Inventory" nzIcon= "shop" nzMatchRouter>
-      </li>
+      <!-- <li nz-submenu nzTitle="Inventory" nzIcon= "shop" nzMatchRouter>
+      </li> -->
+
         <ul>
           <!-- <li nz-menu-item nzMatchRouter>
             <a routerLink="/welcome">Welcome</a>

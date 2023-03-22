@@ -41,7 +41,7 @@ namespace Inventory_Management_System.Controllers
 
 
         [HttpDelete("DeleteInventory")]
-        public bool DeleteInventory(Guid InventoryID)
+        public bool DeleteInventory([FromQuery] Guid InventoryID)
         {
             return _InventoryManager.DeleteInventory(InventoryID);
         }

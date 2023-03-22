@@ -26,11 +26,13 @@ export class WarehouseCComponent {
     this.serviceObject = _serviceObject;
   }
 
-  ngOnInit() {
+  ngOnInit() {//Edit Patch value
+
     this.WarehouseForm.get('WarehouseLocation')?.setValue(this.value.warehouse_location)
   }
 
   AddWarehouse(formdata :any){
+
     this.serviceObject.AddWarehouse(formdata).subscribe((Response =>{
       console.log(Response);
       this.getW();

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     NzDrawerModule,
     NzButtonModule,
-    NzListModule
+    NzListModule,
+    NzTableModule
   ],
   exports: [RouterModule],
   bootstrap: [AdminCComponent],

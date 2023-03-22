@@ -39,6 +39,10 @@ export class WarehouseDrawerComponent {
     });
   }
 
+  ngOnInit(){
+    this.GetWarehouse();
+  }
+
   openComponent(): void {
     const drawerRef = this.drawerService.create<WarehouseCComponent, { getW:any }, string>({
       nzTitle: 'Warehouse Form',

@@ -1,16 +1,35 @@
+<h1 style= "background-color:rgb(171, 110, 199); text-align: center; margin-top: 10px;">ORDERS</h1>
+<br>
+<br>
+<button nz-button nzType= "primary" (click)= "openComponent()">Add New Order</button>
+<br>
+<br>
 
-    <ng-template #drawerTemplate let-data let-drawerRef="drawerRef">
-      value: {{ data?.value }}
-      <br />
-      <br />
-      <button nz-button nzType="primary" (click)="drawerRef.close()">close</button>
-    </ng-template>
-    <div nz-form>
-      <nz-form-item>
-        <input nz-input [(ngModel)]="value" />
-      </nz-form-item>
-    </div>
-    <button nz-button nzType="primary" (click)="openTemplate()">Use Template</button>
-    &nbsp;
-    <button nz-button nzType="primary" (click)="openComponent()">Use Component</button>
-  
+<nz-table style="width: 100%;" [nzData]= "apiList" [nzData]= "apiList2">
+  <thead>
+    <tr>
+      <th>Order Date</th>
+      <th> Status</th>
+      <th> Order Quantity</th>
+      <th>Customer Id</th>
+      <th>Item Id</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let item of apiList">
+      <td>{{ item.orderDate }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.orderQuantity }}</td>
+      <td>{{ item.customerId}}</td>
+      <td>{{ item.itemId}}</td>
+
+      <td>
+        <a (click)= "EditOrder(item)" >EDIT</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)= "DeleteOrder(item.order_Id)">DELETE</a>
+      </td>
+
+    </tr>
+  </tbody>
+</nz-table>

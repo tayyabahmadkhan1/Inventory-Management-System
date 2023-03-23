@@ -1,1 +1,35 @@
-<p>order-c works!</p>
+<form nz-form [formGroup]= "OrderForm" (ngSubmit)= "onSubmit()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" >Order Date </nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input type="datetime" formControlName="OrderDate" placeholder="Date of Order">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" >Order Status</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input type="text" formControlName="Status" placeholder="Pending/Delivered">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" >Order Quantity</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input type="number" formControlName="OrderQuantity" placeholder="Qauntity">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Customer ID: </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="text" formControlName="CustomerId" placeholder="GUID Customer ID">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Item ID: </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="text" formControlName="ItemId" placeholder="GUID Item ID">
+        </nz-form-control>
+      </nz-form-item>
+    <div class="button-container">
+      <button nz-button [nzType]= "'primary'" (click)= "onSubmit">Submit</button>
+    </div>
+  </form>

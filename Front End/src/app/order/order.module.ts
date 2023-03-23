@@ -9,6 +9,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzListModule } from 'ng-zorro-antd/list';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import {NzCardModule} from 	'ng-zorro-antd/card';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import { OrderDrawerComponent } from './order-drawer/order-drawer.component';
 import { OrderCComponent } from './order-c/order-c.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
     NzListModule,
     NzButtonModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
+    NzCardModule
   ],
   exports: [RouterModule],
   bootstrap: [OrderCComponent],

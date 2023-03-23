@@ -12,6 +12,7 @@ namespace IMS.Models
 
         // Foreign key for customer
         public Guid? CustomerId { get; set; }
+        public Guid? ItemId { get; set; }
         public Customer? Customer { get; set; }
 
         public ICollection<Item>? itemsO { get; set; }

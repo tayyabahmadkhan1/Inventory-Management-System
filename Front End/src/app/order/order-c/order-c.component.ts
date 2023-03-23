@@ -21,8 +21,9 @@ export class OrderCComponent {
 
       'Order_Id': new FormControl(''),
       'OrderDate': new FormControl(''),
-      'Status' : new FormControl('Pending'),
+      'Status' : new FormControl(''),
       'OrderQuantity': new FormControl(''),
+      'CustomerId': new FormControl(''),
       'ItemId': new FormControl('')
     })
 
@@ -30,10 +31,14 @@ export class OrderCComponent {
   }
 
   ngOnInit() {
+
+    this.OrderForm.get('Order_Id')?.setValue(this.value.order_Id);
     
     this.OrderForm.get('OrderDate')?.setValue(this.value.orderDate);
-    this.OrderForm.get('Status')?.setValue(this.value.orderDate);
-    this.OrderForm.get('OrderQuantity')?.setValue(this.value.OrderQuantity);
+    this.OrderForm.get('Status')?.setValue(this.value.status);
+    this.OrderForm.get('OrderQuantity')?.setValue(this.value.orderQuantity);
+    this.OrderForm.get('CustomerId')?.setValue(this.value.customerId);
+    this.OrderForm.get('ItemId')?.setValue(this.value.itemId);
   }
 
   Add_UpdateOrder(formdata :any){
@@ -50,19 +55,21 @@ export class OrderCComponent {
 
     if(this.value.order_Id==null)//Add
     {
-      formData.append('orderDate',this.OrderForm.value.Status);
-      formData.append('status',this.OrderForm.value.OrderQuantity);
-      formData.append('orderQuantity',this.OrderForm.value.OrderDate);
-      formData.append('customerId',this.OrderForm.value.OrderDate);
+      formData.append('orderDate',this.OrderForm.value.OrderDate);
+      formData.append('status',this.OrderForm.value.Status);
+      formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
+      formData.append('customerId',this.OrderForm.value.CustomerId);
+      formData.append('itemId',this.OrderForm.value.ItemId);
 
     }
     else//Update
     {
-      formData.append('order_id',this.OrderForm.value.OrderDate);
-      formData.append('orderDate',this.OrderForm.value.Status);
-      formData.append('status',this.OrderForm.value.OrderQuantity);
-      formData.append('orderQuantity',this.OrderForm.value.OrderDate);
-      formData.append('customerId',this.OrderForm.value.OrderDate);
+      formData.append('order_Id',this.OrderForm.value.Order_Id);
+      formData.append('orderDate',this.OrderForm.value.OrderDate);
+      formData.append('status',this.OrderForm.value.Status);
+      formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
+      formData.append('customerId',this.OrderForm.value.CustomerId);
+      formData.append('itemId',this.OrderForm.value.ItemId);
     }
     
     this.Add_UpdateOrder(formData);

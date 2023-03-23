@@ -18,8 +18,8 @@ export class OrderServiceService {
     return this.http.get<any>("https://localhost:7089/api/Orders/ViewOrdersList");
   }
 
-  GetItem(){
-    return this.http.get<any>("https://localhost:7089/api/Items/ViewItemsList");
+  GetItem(id:any){
+    return this.http.get<any>("https://localhost:7089/api/Items/GetItemDetails");
   }
 
   DeleteOrder (id : any){

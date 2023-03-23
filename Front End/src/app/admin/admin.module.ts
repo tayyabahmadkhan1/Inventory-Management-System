@@ -10,6 +10,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
     NzDrawerModule,
     NzButtonModule,
     NzListModule,
-    NzTableModule
+    NzTableModule,
+    NzCardModule
   ],
   exports: [RouterModule],
   bootstrap: [AdminCComponent],

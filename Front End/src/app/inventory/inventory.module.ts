@@ -11,23 +11,21 @@ import {NzNotificationService} from 'ng-zorro-antd/notification';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import {NzCardModule} from 	'ng-zorro-antd/card';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
-import { ItemDrawerComponent } from './item-drawer/item-drawer.component';
-import { ItemCComponent } from './item-c/item-c.component';
 import { FormsModule } from '@angular/forms';
+import { InventoryCComponent } from './inventory-c/inventory-c.component';
 
-const routes: Routes = [
-  { path: '', component: ItemDrawerComponent }
-];
 
+// const routes: Routes = [
+//   { path: '', component: InventoryDrawerComponent }   YET TO MAKE DRAWER COMPONENT
+// ];
 
 @NgModule({
   declarations: [
-    ItemCComponent,
-    ItemDrawerComponent
+    InventoryCComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     NzFormModule,
     ReactiveFormsModule,
     NzTypographyModule,
@@ -39,7 +37,7 @@ const routes: Routes = [
     FormsModule
   ],
   exports: [RouterModule],
-  bootstrap: [ItemCComponent],
+  bootstrap: [InventoryCComponent],
   providers:[NzDrawerService,NzNotificationService]
 })
-export class ItemModule { }
+export class InventoryModule { }

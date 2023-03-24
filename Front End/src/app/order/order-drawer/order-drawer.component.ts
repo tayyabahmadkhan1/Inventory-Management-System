@@ -93,7 +93,7 @@ export class OrderDrawerComponent {
   }
 
   openComponent(): void {
-    const drawerRef = this.drawerService.create<OrderCComponent, { value: string }, string>({
+    const drawerRef = this.drawerService.create<OrderCComponent, { getO:any }, string>({
       nzTitle: 'Order Form',
       nzFooter: '',
       nzExtra: '',

@@ -1,1 +1,35 @@
-<p>item-c works!</p>
+<form nz-form [formGroup]= "ItemForm" (ngSubmit)= "onSubmit()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" >Item Name </nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input type="text" formControlName="ItemName" placeholder="Name of the Item">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" >Description</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input type="text" formControlName="Description" placeholder="Description of Item">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" >Cost Price</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input type="text" formControlName="Costprice" placeholder="Cost Price of the Item">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Sell Price </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="text" formControlName="Sellprice" placeholder="Selling Price of the Item">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Inventory Id </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="text" formControlName="InventoryId" placeholder="GUID Inventory ID">
+        </nz-form-control>
+      </nz-form-item>
+    <div class="button-container">
+      <button nz-button [nzType]= "'primary'" (click)= "onSubmit">Submit</button>
+    </div>
+  </form>

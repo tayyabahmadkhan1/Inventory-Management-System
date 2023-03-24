@@ -29,6 +29,8 @@
     </tbody>
   </nz-table> -->
 
+  <h1 style="background-color:rgb(55, 133, 94); text-align: center; margin-top: 10px;">Admin</h1>
+
   <nz-card style="display: flex; flex-wrap: wrap;">
 
     
@@ -41,9 +43,9 @@
             <h2>Name: {{item.name }}</h2>
             <nz-card style="margin:0px; border-color: rgb(28, 4, 85); margin-right: 250px; width: 250px;" class="nzCard">
                 <span>
-                    <p><strong>Id:</strong>{{item.a_Id}}</p>
+                    <p><strong>Id:</strong> {{item.a_Id}}</p>
                     <p><strong>User Name:</strong> {{item.username}}</p>
-                    <p><strong>Password:</strong>{{item.password}}</p>
+                    <p><strong>Password:</strong> {{item.password}}</p>
                 </span>
                 <button nz-button nzType="primary" style="float: right;" (click)= "editUser(item)">Edit</button>
             </nz-card>  

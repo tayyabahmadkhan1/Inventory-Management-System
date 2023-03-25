@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup,FormControl } from '@angular/forms';
 import { Input } from '@angular/core';
 import { OrderServiceService } from '../order-service.service';
+import { ItemServiceService } from 'src/app/item/item-service.service';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
@@ -15,8 +16,10 @@ export class OrderCComponent {
   @Input() getO !:()=>void;
   OrderForm :FormGroup
   serviceObject: OrderServiceService;
+  ItemServiceObject : ItemServiceService;
+  ItemList : any []=[];
 
-  constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService) {
+  constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService) {
     this.OrderForm = new FormGroup({
 
       'Order_Id': new FormControl(''),
@@ -24,10 +27,13 @@ export class OrderCComponent {
       'Status' : new FormControl(''),
       'OrderQuantity': new FormControl(''),
       'CustomerId': new FormControl(''),
-      'ItemId': new FormControl('')
+      'ItemName' : new FormControl('')
     })
 
     this.serviceObject = _serviceObject;
+    this.ItemServiceObject = _IserviceObject;
+
+    this.GetItem();
   }
 
   ngOnInit() {
@@ -38,7 +44,7 @@ export class OrderCComponent {
     this.OrderForm.get('Status')?.setValue(this.value.status);
     this.OrderForm.get('OrderQuantity')?.setValue(this.value.orderQuantity);
     this.OrderForm.get('CustomerId')?.setValue(this.value.customerId);
-    this.OrderForm.get('ItemId')?.setValue(this.value.itemId);
+    this.OrderForm.get('ItemName')?.setValue(this.value.itemname);
   }
 
   Add_UpdateOrder(formdata :any){
@@ -47,6 +53,14 @@ export class OrderCComponent {
       console.log(Response);
       this.getO();
       this.notification.create("sucess", "Order Saved Successfully","")
+     }));
+  }
+
+  GetItem(){
+
+    this.ItemServiceObject.GetItem().subscribe((Response =>{
+      console.log(Response)
+      this.ItemList = Response;
      }));
   }
 
@@ -59,7 +73,7 @@ export class OrderCComponent {
       formData.append('status',this.OrderForm.value.Status);
       formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
       formData.append('customerId',this.OrderForm.value.CustomerId);
-      formData.append('itemId',this.OrderForm.value.ItemId);
+      formData.append('itemname',this.OrderForm.value.ItemName);
 
     }
     else//Update
@@ -69,7 +83,7 @@ export class OrderCComponent {
       formData.append('status',this.OrderForm.value.Status);
       formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
       formData.append('customerId',this.OrderForm.value.CustomerId);
-      formData.append('itemId',this.OrderForm.value.ItemId);
+      formData.append('itemname',this.OrderForm.value.ItemName);
     }
     
     this.Add_UpdateOrder(formData);

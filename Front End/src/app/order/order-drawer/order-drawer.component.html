@@ -8,22 +8,22 @@
 <nz-table style="width: 100%;" [nzData]= "apiList" [nzData]= "apiList2">
   <thead>
     <tr>
-      <th>Order Date</th>
-      <th> Status</th>
-      <th> Order Quantity</th>
-      <th>Customer Id</th>
-      <th>Item Id</th>
-      <th>Action</th>
+      <th style="text-align: center;">Order ID</th>
+      <th style="text-align: center;">Item Name</th>
+      <th style="text-align: center;"> Order Quantity</th>
+      <th style="text-align: center;"> Status</th>
+      <th style="text-align: center;">Order Date</th>
+      <th style="text-align: center;">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor= "let item of apiList">
-      <td>{{ item.orderDate }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.orderQuantity }}</td>
-      <td>{{ item.customerId}}</td>
-      <td>{{ item.itemId}}</td>
-
+      <td style="text-align: center;">{{item.order_Id}}</td>
+      <td style="text-align: center;">{{ item.itemname}}</td>
+      <td style="text-align: center;">{{ item.orderQuantity }}</td>
+      <td style="text-align: center;">{{ item.status }}</td>
+      <td style="text-align: center;">{{ item.orderDate }}</td>
+      
       <td>
         <a (click)= "EditOrder(item)" >EDIT</a>
         <nz-divider nzType="vertical"></nz-divider>

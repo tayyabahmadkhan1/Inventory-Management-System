@@ -24,9 +24,12 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Item ID: </nz-form-label>
+        <nz-form-label [nzSpan]="8" >Item Name: </nz-form-label>
         <nz-form-control [nzSpan]="16">
-          <input nz-input type="text" formControlName="ItemId" placeholder="GUID Item ID">
+          <select formControlName= "ItemName">
+            <option value="text">Choose Option</option>
+            <option *ngFor= "let I of ItemList" >{{I.item_name}}</option>
+          </select>
         </nz-form-control>
       </nz-form-item>
     <div class="button-container">

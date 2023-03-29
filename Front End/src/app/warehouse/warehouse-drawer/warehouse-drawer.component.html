@@ -20,18 +20,16 @@
         <td>{{ item.warehouse_Id }}</td>
         <td>{{ item.warehouse_location }}</td>
 
-        <!-- <td>
-          <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "editWarehouse(item)">Edit</button>
-        <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteWarehouse(item.warehouse_Id)">Delete</button>
-        <br>
-        <br>
-        </td> -->
-
         <td>
+          <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "editWarehouse(item)">Edit</button>
+          <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteWarehouse(item.warehouse_Id)">Delete</button>
+        </td>
+
+        <!-- <td>
           <a (click)= "editWarehouse(item)" >EDIT一 {{item.warehouse_location}} </a>
           <nz-divider nzType="vertical"></nz-divider>
           <a (click)= "DeleteWarehouse(item.warehouse_Id)">DELETE</a>
-        </td>
+        </td> -->
 
       </tr>
     </tbody>

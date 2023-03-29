@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { Input } from '@angular/core';
 import { OrderServiceService } from '../order-service.service';
 import { ItemServiceService } from 'src/app/item/item-service.service';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { InventoryServiceService } from 'src/app/inventory/inventory-service.service';
 
 @Component({
   selector: 'app-order-c',
@@ -17,9 +18,12 @@ export class OrderCComponent {
   OrderForm :FormGroup
   serviceObject: OrderServiceService;
   ItemServiceObject : ItemServiceService;
+  InventoryServiceObject : InventoryServiceService;
   ItemList : any []=[];
+  InventoryList:any[]=[];
+  OrderStatus: string[] = ["Pending", "In Process", "Delivered"];
 
-  constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService) {
+  constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService, _InserviceObject:InventoryServiceService) {
     this.OrderForm = new FormGroup({
 
       'Order_Id': new FormControl(''),
@@ -27,13 +31,18 @@ export class OrderCComponent {
       'Status' : new FormControl(''),
       'OrderQuantity': new FormControl(''),
       'CustomerId': new FormControl(''),
-      'ItemName' : new FormControl('')
+      'ItemName' : new FormControl(''),
+      'ItemCategory': new FormControl('')
     })
 
     this.serviceObject = _serviceObject;
     this.ItemServiceObject = _IserviceObject;
+    this.InventoryServiceObject=_InserviceObject;
 
     this.GetItem();
+    this.GetInventory();
+
+    
   }
 
   ngOnInit() {
@@ -48,7 +57,6 @@ export class OrderCComponent {
   }
 
   Add_UpdateOrder(formdata :any){
-
     this.serviceObject.Add_UpdateOrder(formdata).subscribe((Response =>{
       console.log(Response);
       this.getO();
@@ -56,11 +64,22 @@ export class OrderCComponent {
      }));
   }
 
-  GetItem(){
+  get filteredItemList() {
+    const category = this.OrderForm.get("ItemCategory")?.value;
+    return this.ItemList.filter((I) => I.itemcategory === category);
+  }
 
+  GetItem(){
     this.ItemServiceObject.GetItem().subscribe((Response =>{
       console.log(Response)
       this.ItemList = Response;
+     }));
+  }
+
+  GetInventory(){
+    this.InventoryServiceObject.GetInventory().subscribe((Response =>{
+      console.log(Response)
+      this.InventoryList = Response;
      }));
   }
 
@@ -85,7 +104,6 @@ export class OrderCComponent {
       formData.append('customerId',this.OrderForm.value.CustomerId);
       formData.append('itemname',this.OrderForm.value.ItemName);
     }
-    
     this.Add_UpdateOrder(formData);
     this.drawerRef.close();
   }

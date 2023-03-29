@@ -2,15 +2,20 @@
     <nz-form-item>
       <nz-form-label [nzSpan]="8" >Order Date </nz-form-label>
       <nz-form-control [nzSpan]="16">
-        <input nz-input type="datetime" formControlName="OrderDate" placeholder="Date of Order">
+        <input nz-input type="date" formControlName="OrderDate" placeholder="Date of Order">
       </nz-form-control>
     </nz-form-item>
+
+    <!-- //DropDown -->
     <nz-form-item>
       <nz-form-label [nzSpan]="8" >Order Status</nz-form-label>
       <nz-form-control [nzSpan]="16">
-        <input nz-input type="text" formControlName="Status" placeholder="Pending/Delivered">
+        <nz-select  formControlName="Status" nzPlaceHolder="Choose Option">
+          <nz-option *ngFor= "let status of OrderStatus" [nzLabel]= "status" [nzValue]= "status"></nz-option>
+        </nz-select>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-label [nzSpan]="8" >Order Quantity</nz-form-label>
       <nz-form-control [nzSpan]="16">
@@ -18,20 +23,33 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Customer ID: </nz-form-label>
+        <nz-form-label [nzSpan]="8" >Customer ID </nz-form-label>
         <nz-form-control [nzSpan]="16">
           <input nz-input type="text" formControlName="CustomerId" placeholder="GUID Customer ID">
         </nz-form-control>
       </nz-form-item>
+
+
+      <!-- DEPENDENT DROPDOWN -->
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Item Name: </nz-form-label>
+        <nz-form-label [nzSpan]="8">Item Category </nz-form-label>
         <nz-form-control [nzSpan]="16">
-          <select formControlName= "ItemName">
-            <option value="text">Choose Option</option>
-            <option *ngFor= "let I of ItemList" >{{I.item_name}}</option>
-          </select>
+          <nz-select formControlName="ItemCategory" nzPlaceHolder="Choose Option">
+            <nz-option *ngFor= "let I of InventoryList" [nzLabel]="I.category"  [nzValue]= "I.category"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Item Name </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <nz-select formControlName="ItemName" nzShowSearch nzAllowClear nzPlaceHolder="Choose Option">
+            <nz-option *ngFor= "let I of filteredItemList"  [nzLabel]="I.item_name"  [nzValue]= "I.item_name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      
+    
     <div class="button-container">
       <button nz-button [nzType]= "'primary'" (click)= "onSubmit">Submit</button>
     </div>

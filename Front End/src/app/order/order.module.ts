@@ -14,6 +14,7 @@ import {NzDividerModule} from 'ng-zorro-antd/divider';
 import { OrderDrawerComponent } from './order-drawer/order-drawer.component';
 import { OrderCComponent } from './order-c/order-c.component';
 import { FormsModule } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select'
 
 const routes: Routes = [
   { path: '', component: OrderDrawerComponent }
@@ -35,7 +36,8 @@ const routes: Routes = [
     NzTableModule,
     NzDividerModule,
     NzCardModule,
-    FormsModule
+    FormsModule,
+    NzSelectModule
   ],
   exports: [RouterModule],
   bootstrap: [OrderCComponent],

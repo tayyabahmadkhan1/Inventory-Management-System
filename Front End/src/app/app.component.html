@@ -12,96 +12,48 @@
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <!-- <li nz-submenu nzOpen nzTitle="Admin Dashboard" nzIcon="home">
-          <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/admin">Admin Details</a>
-          </li>
-          </ul>
-        </li> -->
 
-
-        <li
+        <li routerLink="/admin"
       nz-menu-item
       nz-tooltip
       nzTooltipPlacement="right"
       [nzTooltipTitle]="isCollapsed ? 'Admin' : ''"
       >
-      <span routerLink="/admin" nz-icon nzType="github"></span>
-      <span routerLink="/admin">Admin</span>
+      <span nz-icon nzType="github"></span>
+      <span>Admin</span>
       </li>
 
-      <li
+      <li routerLink="/warehouse"
       nz-menu-item
       nz-tooltip
       nzTooltipPlacement="right"
       [nzTooltipTitle]= "isCollapsed ? 'Warehouse' : ''"
       >
-      <span routerLink="/warehouse" nz-icon nzType="home"></span>
-      <span routerLink="/warehouse">Warehouse</span>
+      <span nz-icon nzType="home"></span>
+      <span>Warehouse</span>
       </li>
 
-      <li
+      <li routerLink="/order"
       nz-menu-item
       nz-tooltip
       nzTooltipPlacement="right"
       [nzTooltipTitle]= "isCollapsed ? 'Order' : ''"
       >
-      <span routerLink="/order" nz-icon nzType= "gift"></span>
-      <span routerLink="/order">Orders</span>
+      <span  nz-icon nzType= "gift"></span>
+      <span >Orders</span>
       </li>
 
-      <li
+      <li routerLink="/item"
       nz-menu-item
       nz-tooltip
       nzTooltipPlacement="right"
       [nzTooltipTitle]= "isCollapsed ? 'Items' : ''"
       >
-      <span routerLink="/item" nz-icon nzType="appstore"></span>
-      <span routerLink="/item">Items</span>
+      <span  nz-icon nzType="appstore"></span>
+      <span >Items</span>
       </li>
 
-      <li
-      nz-menu-item
-      nz-tooltip
-      nzTooltipPlacement="right"
-      [nzTooltipTitle]= "isCollapsed ? 'Inventory' : ''"
-      >
-      <span routerLink="/inventory" nz-icon nzType="shop"></span>
-      <span routerLink="/inventory">Inventory</span>
-      </li>
-
-          
-      <!-- <li nz-submenu nzTitle="Orders" nzIcon= "gift" nzMatchRouter>
-      </li> -->
-
-      <!-- <li nz-submenu nzTitle="Items" nzIcon= "appstore" nzMatchRouter>
-      </li> -->
-
-      <!-- <li nz-submenu nzTitle="Inventory" nzIcon= "shop" nzMatchRouter>
-      </li> -->
-
-        <ul>
-          <!-- <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/admin">Admin</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li> -->
-        </ul>
-      <!-- <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
-      </li> -->
+      
     </ul>
   </nz-sider>
   <nz-layout>

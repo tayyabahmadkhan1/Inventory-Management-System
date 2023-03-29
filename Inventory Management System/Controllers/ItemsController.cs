@@ -29,7 +29,7 @@ namespace InternProject.Controllers
 
 
         [HttpGet("GetItemDetails")]
-        public Item GetItemsDetails(Guid ItemID)
+        public Item GetItemsDetails([FromQuery] Guid ItemID)
         {
             return _ItemManager.GetItemDetails(ItemID);
         }

@@ -14,6 +14,7 @@ namespace IMS.Models
         public int cost_price { get; set; }
 
         public int sell_price { get; set; }
+        public string Itemcategory { get; set; }
 
 
         public Guid? InventoryIdItems { get; set; }

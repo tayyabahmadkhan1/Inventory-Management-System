@@ -1,25 +1,33 @@
     <form nz-form [formGroup]="AdminForm" (ngSubmit)="onSubmit()">
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Name</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzRequired>Name</nz-form-label>
         <nz-form-control [nzSpan]="16">
           <input nz-input type="text" formControlName="AdminName" placeholder="Full Name">
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Username</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzRequired>Email</nz-form-label>
         <nz-form-control [nzSpan]="16">
-          <input nz-input type="text" formControlName="Username" placeholder="Username">
+          <input nz-input type="email" formControlName="Username" placeholder="Username">
+          <div style="color: red;" *ngIf= " AdminForm.get('Username')?.hasError('invalidEmail')">
+            (E-Mail must end at "@stallions.tech")
+          </div>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
 
+        
         <nz-form-label [nzSpan]="8" nzRequired>Password</nz-form-label>
         <nz-form-control [nzSpan]="16">
-          <input nz-input type="text" formControlName="AdminPassword" placeholder="Password">
+          <input nz-input type="password" formControlName="AdminPassword" placeholder="Password">
+          <div style="color: red;" *ngIf= " AdminForm.get('AdminPassword')?.hasError('invalidPassword')">
+            (Password should include TM and have minimum length of 8)
+          </div>
         </nz-form-control>
       </nz-form-item>
+      
       <div class="button-container">
-        <button nz-button [nzType]= "'primary'">Submit</button>
+        <button [disabled]= " (AdminForm.get('AdminPassword')?.invalid || AdminForm.get('Username')?.invalid) || AdminForm.get('AdminName')?.invalid" nz-button [nzType]= "'primary'">Submit</button>
       </div>
     </form>

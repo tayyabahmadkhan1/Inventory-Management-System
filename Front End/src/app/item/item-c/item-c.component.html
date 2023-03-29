@@ -24,6 +24,14 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Item Category </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <nz-select formControlName= "ItemCategory" nzPlaceHolder="Choose Option">
+            <nz-option *ngFor= "let I of CategoryList" [nzLabel]="I.category" [nzValue]="I.category"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
         <nz-form-label [nzSpan]="8" >Inventory Id </nz-form-label>
         <nz-form-control [nzSpan]="16">
           <input nz-input type="text" formControlName="InventoryId" placeholder="GUID Inventory ID">

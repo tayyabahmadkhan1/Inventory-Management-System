@@ -1,27 +1,45 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Input } from '@angular/core';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
-import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { AbstractControl } from '@angular/forms';
+
+//Custom Validators for Email & Password.
+function PasswordValidator(control: AbstractControl) {
+  if (control.value && !control.value?.includes('TM')) {
+    return { invalidPassword: true };
+  }
+  return null;
+}
+
+function EmailValidator(control: AbstractControl) {
+  if (control.value && !control.value?.endsWith('@stallions.tech')) {
+    return { invalidEmail: true };
+  }
+  return null;
+}
+
 
 @Component({
   selector: 'app-admin-c',
   templateUrl: './admin-c.component.html',
   styleUrls: ['./admin-c.component.css']
 })
+
 export class AdminCComponent {
 
   @Input() value: any;
   @Input() getA !:()=>void;
   AdminForm :FormGroup
   visible = true;
+  flag=true;
 
   constructor(private drawerRef: NzDrawerRef<string>, private http: HttpClient) {
     this.AdminForm = new FormGroup({
-      'AdminName': new FormControl(''),
-      'Username': new FormControl(''),
-      'AdminPassword': new FormControl('')
+      'AdminName': new FormControl('',[Validators.required]),
+      'Username': new FormControl('',[Validators.required, EmailValidator]),
+      'AdminPassword': new FormControl('', [Validators.required, PasswordValidator,Validators.minLength(8)])
     })
   }
 

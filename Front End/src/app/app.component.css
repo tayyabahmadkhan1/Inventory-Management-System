@@ -10,13 +10,18 @@
   max-height: auto;
 
 }
-
 .menu-sidebar {
-  position: relative;
-  z-index: 10;
   min-height: 100vh;
+  width: fit-content;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  overflow-y: auto;
   box-shadow: 2px 0 6px rgba(0,21,41,.35);
 }
+
 
 .header-trigger {
   height: 64px;

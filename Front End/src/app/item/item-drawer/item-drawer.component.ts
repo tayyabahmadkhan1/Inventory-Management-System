@@ -16,16 +16,19 @@ export class ItemDrawerComponent {
   value = 'ng';
   apiList : any []=[];
   searchTerm: any;
+  imageUrl:any ='https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1441831053i/3260388.jpg';
 
   constructor(private drawerService: NzDrawerService, private ServiceObj: ItemServiceService, private notification :NzNotificationService) {}
 
   ngOnInit(){
     this.GetItem();
   }
+
   
   ngOnChanges(){
     this.searchItem();
   }
+
 
   searchItem() {
     if (this.searchTerm === '') {
@@ -43,6 +46,7 @@ export class ItemDrawerComponent {
     }));
   }
 
+
   DeleteItem(id :any){
     this.ServiceObj.DeleteItem(id).subscribe((Response=>{
       console.log(Response);
@@ -50,6 +54,7 @@ export class ItemDrawerComponent {
       this.notification.create("sucess", "Item Deleted Successfully","")
      }));
   }
+
 
   EditItem(item: any) 
     {

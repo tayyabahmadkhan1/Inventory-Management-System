@@ -5,6 +5,7 @@
         <input nz-input type="text" formControlName="ItemName" placeholder="Name of the Item">
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-label [nzSpan]="8" >Description</nz-form-label>
       <nz-form-control [nzSpan]="16">
@@ -23,20 +24,64 @@
           <input nz-input type="text" formControlName="Sellprice" placeholder="Selling Price of the Item">
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
+
+      <!-- <nz-form-item>
         <nz-form-label [nzSpan]="8" >Item Category </nz-form-label>
         <nz-form-control [nzSpan]="16">
           <nz-select formControlName= "ItemCategory" nzPlaceHolder="Choose Option">
             <nz-option *ngFor= "let I of CategoryList" [nzLabel]="I.category" [nzValue]="I.category"></nz-option>
           </nz-select>
         </nz-form-control>
-      </nz-form-item>
+      </nz-form-item> -->
+
+      <!-- <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Item Category </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <nz-select formControlName= "ItemCategory" nzPlaceHolder="Choose Option">
+            <nz-option >Other </nz-option>
+            <nz-option *ngFor= "let I of UniqueItemCategories" [nzLabel]="I" [nzValue]="I"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item> -->
+
+
       <nz-form-item>
+        <nz-form-label [nzSpan]="8">Item Category</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <nz-select formControlName="ItemCategory" nzPlaceHolder="Choose Option" >
+            <nz-option nzLabel="Add New Category" [nzValue]= "other"></nz-option>
+            <nz-option *ngFor="let category of UniqueItemCategories" [nzLabel]="category" [nzValue]="category"></nz-option>
+          </nz-select>
+          <input style="margin-top: 20px;" *ngIf= "ItemForm.get('ItemCategory')?.value === 'Other'" type="text" [(ngModel)]="newCategory" [ngModelOptions]="{standalone: true}" placeholder="Enter category name">
+        </nz-form-control>
+      </nz-form-item>
+      
+      
+
+      
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Stock Quantity</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="number" formControlName="StockQuantity" placeholder="Enter Stock Quantity">
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Image Url </nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="text" formControlName="ImageUrl" placeholder="Enter Url of Image">
+        </nz-form-control>
+      </nz-form-item>
+      
+
+      <!-- <nz-form-item>
         <nz-form-label [nzSpan]="8" >Inventory Id </nz-form-label>
         <nz-form-control [nzSpan]="16">
           <input nz-input type="text" formControlName="InventoryId" placeholder="GUID Inventory ID">
         </nz-form-control>
-      </nz-form-item>
+      </nz-form-item> -->
+      
     <div class="button-container">
       <button nz-button [nzType]= "'primary'" (click)= "onSubmit">Submit</button>
     </div>

@@ -16,8 +16,12 @@ export class ItemCComponent {
   @Input() getI !:()=>void;
   ItemForm :FormGroup
   serviceObject: ItemServiceService;
-  InventoryServiceObject : InventoryServiceService;
-  CategoryList : any[]=[];
+  // InventoryServiceObject : InventoryServiceService;
+  // CategoryList : any[]=[];
+  ItemList:any[]=[];
+  showOtherInput = false;
+  newCategory = '';
+  other:any='Other'
 
   constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : ItemServiceService,private notification : NzNotificationService, _INserviceObject : InventoryServiceService) {
     this.ItemForm = new FormGroup({
@@ -28,12 +32,16 @@ export class ItemCComponent {
       'Costprice': new FormControl(''),
       'Sellprice': new FormControl(''),
       'InventoryId': new FormControl(''),
-      'ItemCategory' : new FormControl('')
+      'ItemCategory' : new FormControl(''),
+      'StockQuantity' : new FormControl(''),
+      'ImageUrl' : new FormControl('')
+
     })
 
     this.serviceObject = _serviceObject;
-    this.InventoryServiceObject=_INserviceObject;
-    this.GetInventory();
+    // this.InventoryServiceObject=_INserviceObject;
+    // this.GetInventory();
+    this.GetItem();
   }
 
   ngOnInit() {
@@ -46,6 +54,8 @@ export class ItemCComponent {
     this.ItemForm.get('Sellprice')?.setValue(this.value.sell_price);
     this.ItemForm.get('InventoryId')?.setValue(this.value.inventoryIdItems);
     this.ItemForm.get('ItemCategory')?.setValue(this.value.itemcategory);
+    this.ItemForm.get('StockQuantity')?.setValue(this.value.stockquantity);
+    this.ItemForm.get('ImageUrl')?.setValue(this.value.imageurl);
   }
 
   Add_UpdateItem(formdata :any){
@@ -57,12 +67,25 @@ export class ItemCComponent {
      }));
   }
 
-  GetInventory(){
+  // GetInventory(){
 
-    this.InventoryServiceObject.GetInventory().subscribe((Response =>{
+  //   this.InventoryServiceObject.GetInventory().subscribe((Response =>{
+  //     console.log(Response)
+  //     this.CategoryList = Response;
+  //    }));
+  // }
+
+  GetItem(){
+    this.serviceObject.GetItem().subscribe((Response =>{
       console.log(Response)
-      this.CategoryList = Response;
+      this.ItemList = Response;
      }));
+  }
+
+  get UniqueItemCategories() {
+    const categories = this.ItemList.map(item => item.itemcategory); 
+    const uniqueCategories = [...new Set(categories)]; 
+    return uniqueCategories;
   }
 
   onSubmit(){
@@ -75,7 +98,15 @@ export class ItemCComponent {
       formData.append('cost_price',this.ItemForm.value.Costprice);
       formData.append('sell_price',this.ItemForm.value.Sellprice);
       formData.append('inventoryIdItems',this.ItemForm.value.InventoryId);
-      formData.append('itemcategory',this.ItemForm.value.ItemCategory);
+      // formData.append('itemcategory',this.ItemForm.value.ItemCategory);
+      formData.append('stockquantity',this.ItemForm.value.StockQuantity);
+      formData.append('imageurl',this.ItemForm.value.ImageUrl);
+
+      if (this.ItemForm.value.ItemCategory === 'Other') {
+        formData.append('itemcategory', this.newCategory);
+      } else {
+        formData.append('itemcategory', this.ItemForm.value.ItemCategory);
+      }
 
     }
     else//Update
@@ -86,7 +117,15 @@ export class ItemCComponent {
       formData.append('cost_price',this.ItemForm.value.Costprice);
       formData.append('sell_price',this.ItemForm.value.Sellprice);
       formData.append('inventoryIdItems',this.ItemForm.value.InventoryId);
-      formData.append('itemcategory',this.ItemForm.value.ItemCategory);
+      // formData.append('itemcategory',this.ItemForm.value.ItemCategory);
+      formData.append('stockquantity',this.ItemForm.value.StockQuantity);
+      formData.append('imageurl',this.ItemForm.value.ImageUrl);
+
+      if (this.ItemForm.value.ItemCategory === 'Other') {
+        formData.append('itemcategory', this.newCategory);
+      } else {
+        formData.append('itemcategory', this.ItemForm.value.ItemCategory);
+      }
     }
     
     this.Add_UpdateItem(formData);

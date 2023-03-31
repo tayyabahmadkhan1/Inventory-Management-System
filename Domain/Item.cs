@@ -16,9 +16,13 @@ namespace IMS.Models
         public int sell_price { get; set; }
         public string Itemcategory { get; set; }
 
+        public int Stockquantity { get; set; }
 
-        public Guid? InventoryIdItems { get; set; }
-        public Inventory? Inventorys { get; set; }
+        public string Imageurl { get; set; }
+
+
+       // public Guid? InventoryIdItems { get; set; }
+        //public Inventory? Inventorys { get; set; }
 
         public ICollection<Order>? OrderI { get; set; }
     }

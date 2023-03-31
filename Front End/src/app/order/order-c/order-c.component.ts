@@ -20,8 +20,9 @@ export class OrderCComponent {
   ItemServiceObject : ItemServiceService;
   InventoryServiceObject : InventoryServiceService;
   ItemList : any []=[];
-  InventoryList:any[]=[];
+  // InventoryList:any[]=[];
   OrderStatus: string[] = ["Pending", "In Process", "Delivered"];
+  flag:any=true;
 
   constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService, _InserviceObject:InventoryServiceService) {
     this.OrderForm = new FormGroup({
@@ -31,7 +32,8 @@ export class OrderCComponent {
       'Status' : new FormControl(''),
       'OrderQuantity': new FormControl(''),
       'CustomerId': new FormControl(''),
-      'ItemName' : new FormControl(''),
+      'ItemName': new FormControl([]),
+      // 'ItemName' : new FormControl(''),
       'ItemCategory': new FormControl('')
     })
 
@@ -40,7 +42,7 @@ export class OrderCComponent {
     this.InventoryServiceObject=_InserviceObject;
 
     this.GetItem();
-    this.GetInventory();
+    // this.GetInventory();
 
     
   }
@@ -69,6 +71,12 @@ export class OrderCComponent {
     return this.ItemList.filter((I) => I.itemcategory === category);
   }
 
+  get UniqueItemCategories() {
+    const categories = this.ItemList.map(item => item.itemcategory); // get all item categories
+    const uniqueCategories = [...new Set(categories)]; // use Set to get unique categories
+    return uniqueCategories;
+  }
+
   GetItem(){
     this.ItemServiceObject.GetItem().subscribe((Response =>{
       console.log(Response)
@@ -76,12 +84,12 @@ export class OrderCComponent {
      }));
   }
 
-  GetInventory(){
-    this.InventoryServiceObject.GetInventory().subscribe((Response =>{
-      console.log(Response)
-      this.InventoryList = Response;
-     }));
-  }
+  // GetInventory(){
+  //   this.InventoryServiceObject.GetInventory().subscribe((Response =>{
+  //     console.log(Response)
+  //     this.InventoryList = Response;
+  //    }));
+  // }
 
   onSubmit(){
     let formData = new FormData();
@@ -92,7 +100,7 @@ export class OrderCComponent {
       formData.append('status',this.OrderForm.value.Status);
       formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
       formData.append('customerId',this.OrderForm.value.CustomerId);
-      formData.append('itemname',this.OrderForm.value.ItemName);
+      formData.append('itemname',this.OrderForm.value.ItemName.join(' , '));
 
     }
     else//Update
@@ -102,7 +110,7 @@ export class OrderCComponent {
       formData.append('status',this.OrderForm.value.Status);
       formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
       formData.append('customerId',this.OrderForm.value.CustomerId);
-      formData.append('itemname',this.OrderForm.value.ItemName);
+      formData.append('itemname',this.OrderForm.value.ItemName.join(' , '));
     }
     this.Add_UpdateOrder(formData);
     this.drawerRef.close();

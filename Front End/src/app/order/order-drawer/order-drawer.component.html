@@ -13,7 +13,8 @@
       <th style="text-align: center;"> Order Quantity</th>
       <th style="text-align: center;"> Status</th>
       <th style="text-align: center;">Order Date</th>
-      <th style="text-align: center;">Action</th>
+      <th style="text-align: center;">Edit</th>
+      <th style="text-align: center;">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -23,12 +24,21 @@
       <td style="text-align: center;">{{ item.orderQuantity }}</td>
       <td style="text-align: center;">{{ item.status }}</td>
       <td style="text-align: center;">{{ item.orderDate }}</td>
-      
+
+
       <td>
+        <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "EditOrder(item)">Edit</button>
+      </td>
+
+      <td>
+        <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteOrder(item.order_Id)">Delete</button>
+      </td>
+      
+      <!-- <td>
         <a (click)= "EditOrder(item)" >EDIT</a>
         <nz-divider nzType="vertical"></nz-divider>
         <a (click)= "DeleteOrder(item.order_Id)">DELETE</a>
-      </td>
+      </td> -->
 
     </tr>
   </tbody>

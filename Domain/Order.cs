@@ -11,8 +11,8 @@ namespace IMS.Models
         public int OrderQuantity { get; set; }
 
         // Foreign key for customer
-        public Guid? CustomerId { get; set; }
-        public Customer? Customer { get; set; }
+        /*public Guid? CustomerId { get; set; }
+        public Customer? Customer { get; set; }*/
         public string Itemname { get; set; }
 
         public ICollection<Item>? itemsO { get; set; }

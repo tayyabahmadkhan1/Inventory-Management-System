@@ -3,6 +3,7 @@ import { NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ItemServiceService } from '../item-service.service';
 import { ItemCComponent } from '../item-c/item-c.component';
+import { findIndex } from 'rxjs';
 
 @Component({
   selector: 'app-item-drawer',
@@ -16,7 +17,6 @@ export class ItemDrawerComponent {
   value = 'ng';
   apiList : any []=[];
   searchTerm: any;
-  imageUrl:any ='https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1441831053i/3260388.jpg';
 
   constructor(private drawerService: NzDrawerService, private ServiceObj: ItemServiceService, private notification :NzNotificationService) {}
 
@@ -101,7 +101,6 @@ export class ItemDrawerComponent {
     });
 
     drawerRef.afterClose.subscribe(data => {
-      console.log(data);
       if (typeof data === 'string') {
         this.value = data;
       }

@@ -1,9 +1,9 @@
-<h1 style="background-color:rgb(192, 86, 174); text-align: center; margin-top: 10px;">ITEMS</h1>
+<h1 style= "background-color:darkcyan; text-align: center; margin-top: 10px;">INVENTORY</h1>
 
 <br>
 <br>
 
-<input nz-input placeholder="Search for item" [(ngModel)]= "searchTerm" (ngModelChange)= "searchItem()">
+<input nzShowSearch nz-input placeholder="Search for item" [(ngModel)]= "searchTerm" (ngModelChange)= "searchItem()">
 
 <br>
 <br>
@@ -18,31 +18,50 @@
     <tr>
       <th style="text-align: center;">Item Image</th>
       <th style="text-align: center;">Item Name</th>
-      <th style="text-align: center;">Item Description</th>
+      <!-- <th style="text-align: center;">Item Description</th> -->
+      
       <th style="text-align: center;">Item Category</th>
+      <th style="text-align: center;">In Stock</th>
       <th style="text-align: center;">Cost Price</th>
       <th style="text-align: center;">Selling Price</th>
       
-      <th style="text-align: center;">Action</th>
+      <th style="text-align: center;">Edit</th>
+      <th style="text-align: center;">Delete</th>
+
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of apiList">
-      <td>
-        <img [src]="imageUrl" style="width: 75px; height: 100px;">
-      </td>
-      <td style="text-align: center;">{{ item.item_name }}</td>
-      <td>{{ item.description }}</td>
-      <td style="text-align: center;">{{item.itemcategory}}</td>
-      <td style="text-align: center;">{{ item.cost_price}}</td>
-      <td style="text-align: center;">{{ item.sell_price}}</td>
-      
 
-      <td>
-        <a (click)="EditItem(item)">EDIT一{{item.item_name}}</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="DeleteItem(item.item_Id)">DELETE</a>
-      </td>
+       
+      
+        <td>
+          <img [src]= "item.imageurl" style="width: 75px; height: 100px;">
+        </td>
+        
+      
+        <td style="text-align: center;">{{ item.item_name }}</td>
+        <!-- <td>{{ item.description }}</td> -->
+        <td style="text-align: center;">{{item.itemcategory}}</td>
+        <td style="text-align: center;">{{ item.stockquantity }}</td>
+        <td style="text-align: center;">{{ item.cost_price}}</td>
+        <td style="text-align: center;">{{ item.sell_price}}</td>
+
+        <td>
+          <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "EditItem(item)">Edit</button>
+        </td>
+
+        <td>
+          <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteItem(item.item_Id)">Delete</button>
+        </td>
+        
+
+        <!-- <td>
+          <a (click)="EditItem(item)">EDIT一{{item.item_name}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="DeleteItem(item.item_Id)">DELETE</a>
+        </td> -->
+      
 
     </tr>
   </tbody>

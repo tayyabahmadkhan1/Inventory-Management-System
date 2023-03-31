@@ -11,7 +11,7 @@ namespace IMS.Models
         public int stock_quantity { get; set; }
         public string Category { get; set; }
 
-        public ICollection<Item>? items { get; set; }
+        //public ICollection<Item>? items { get; set; }
 
         public Warehouse? warehouseI { get; set; }
 

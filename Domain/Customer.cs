@@ -13,6 +13,6 @@ namespace IMS.Models
         public string Password { get; set; }
 
         // Navigation property for orders
-        public ICollection<Order>? Orders { get; set; }
+        //public ICollection<Order>? Orders { get; set; }
     }
 }

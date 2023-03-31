@@ -29,10 +29,10 @@ namespace Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //One to many relation b/w Inventory & Item
-            modelBuilder.Entity<Inventory>()
+           /* modelBuilder.Entity<Inventory>()
                 .HasMany(i => i.items)   // Inventory has many Items
                 .WithOne(item => item.Inventorys) // Item has one Inventory
-                .HasForeignKey(item => item.InventoryIdItems); // Use InventoryId as foreign key in Item table
+                .HasForeignKey(item => item.InventoryIdItems); // Use InventoryId as foreign key in Item table*/
 
             // One to many relation b/w warehouse & inventory
             modelBuilder.Entity<Warehouse>()

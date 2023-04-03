@@ -16,12 +16,7 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSpan]="8" >Order Quantity</nz-form-label>
-      <nz-form-control [nzSpan]="16">
-        <input nz-input type="number" formControlName="OrderQuantity" placeholder="Qauntity">
-      </nz-form-control>
-    </nz-form-item>
+    
     
 
     
@@ -63,6 +58,101 @@
           </nz-select>
         </nz-form-control>
       </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" >Item Quantity</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input type="number" formControlName="OrderQuantity" placeholder="Qauntity">
+        </nz-form-control>
+      </nz-form-item>
+
+
+
+
+        
+      <!-- <div formArrayName= "MoreItems">
+      <div *ngFor= "let one of MoreItems.controls; index as i" [formGroupName]= "i">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8">Item Category </nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-select formControlName="one.Itemcategory" nzPlaceHolder="Choose Option">
+              <nz-option *ngFor= "let I of UniqueItemCategories" [nzLabel]= "I"  [nzValue]= "I"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8">Item Name </nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-select formControlName="one.Itemname" nzMode="multiple" nzPlaceHolder="Choose Option">
+              <nz-option *ngFor= "let I of fItemList"  [nzLabel]= "I.item_name"  [nzValue]= "I.item_name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" >Item Quantity</nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <input nz-input type="number" formControlName="one.Itemquantity" placeholder="Qauntity">
+          </nz-form-control>
+        </nz-form-item>
+        
+      </div>
+      <button (click)= "addItem()">Add More items</button>
+    </div> -->
+
+
+
+    <div formArrayName="items">
+      <div *ngFor="let item of items.controls; let i = index">
+        <div [formGroupName]="i">
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">Item Category</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+              <nz-select formControlName="category" nzPlaceHolder="Choose Option">
+                <nz-option *ngFor= "let I of UniqueItemCategories" [nzLabel]= "I"  [nzValue]= "I"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <!-- <label>
+            Item Name:
+            <input formControlName="name">
+          </label> -->
+          <!-- <label>
+            Item Category:
+            <input formControlName="category">
+          </label> -->
+
+          <!-- <label>
+            Item Quantity:
+            <input formControlName="quantity">
+          </label> -->
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">Item Name </nz-form-label>
+            <nz-form-control [nzSpan]="16">
+              <nz-select formControlName="name" nzPlaceHolder="Choose Option">
+                <nz-option *ngFor= "let I of getfitem(i)"  [nzLabel]= "I.item_name"  [nzValue]= "I.item_name"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8" >Item Quantity</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+              <input nz-input type="number" formControlName="quantity" placeholder="Qauntity">
+            </nz-form-control>
+          </nz-form-item>
+
+
+          
+        </div>
+      </div>
+    </div>
+    <button (click)="addItem()">Add Item</button>
+
+      
       
     
     <div class="button-container">

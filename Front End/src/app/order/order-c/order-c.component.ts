@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormGroup,FormControl, Validators, FormArray } from '@angular/forms';
 import { Input } from '@angular/core';
 import { OrderServiceService } from '../order-service.service';
 import { ItemServiceService } from 'src/app/item/item-service.service';
@@ -23,19 +23,23 @@ export class OrderCComponent {
   // InventoryList:any[]=[];
   OrderStatus: string[] = ["Pending", "In Process", "Delivered"];
   flag:any=true;
+  MoreItems: FormArray;
 
   constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService, _InserviceObject:InventoryServiceService) {
+    this.MoreItems = new FormArray<any>([])
     this.OrderForm = new FormGroup({
+      MoreItems : this.MoreItems,
 
       'Order_Id': new FormControl(''),
       'OrderDate': new FormControl(''),
       'Status' : new FormControl(''),
       'OrderQuantity': new FormControl(''),
       'CustomerId': new FormControl(''),
-      'ItemName': new FormControl([]),
-      // 'ItemName' : new FormControl(''),
+      items: new FormArray([]),
+      'ItemName' : new FormControl(''),
       'ItemCategory': new FormControl('')
     })
+
 
     this.serviceObject = _serviceObject;
     this.ItemServiceObject = _IserviceObject;
@@ -71,11 +75,44 @@ export class OrderCComponent {
     return this.ItemList.filter((I) => I.itemcategory === category);
   }
 
+  get fItemList() {
+    const category = this.items.controls[0].get('category')?.value;
+    return this.ItemList.filter((I) => I.itemcategory === category);
+  }
+
+  getfitem(index:any){
+    const category = this.items.controls[index].get('category')?.value;
+    return this.ItemList.filter((I) => I.itemcategory === category);
+
+  }
+
+  get items() {
+    return this.OrderForm.get('items') as FormArray;
+  }
+
   get UniqueItemCategories() {
     const categories = this.ItemList.map(item => item.itemcategory); // get all item categories
     const uniqueCategories = [...new Set(categories)]; // use Set to get unique categories
     return uniqueCategories;
   }
+
+  addItem() {
+    const newItem = new FormGroup({
+      name: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+      quantity: new FormControl('', Validators.required),
+    });
+    this.items.push(newItem);
+  }
+
+  CreateItem(): any {
+    return new FormGroup({
+      Itemname: new FormControl('',Validators.required),
+      Itemcategory: new FormControl('',Validators.required),
+      Itemquantity: new FormControl('',Validators.required)
+    });
+  }
+
 
   GetItem(){
     this.ItemServiceObject.GetItem().subscribe((Response =>{

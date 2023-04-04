@@ -8,22 +8,24 @@
 <nz-table style="width: 100%;" [nzData]= "apiList" [nzData]= "apiList2">
   <thead>
     <tr>
-      <th style="text-align: center;">Order ID</th>
-      <th style="text-align: center;">Item Name</th>
+      <!-- <th style="text-align: center;">Order ID</th> -->
+      <th style="text-align: center;">Items Name</th>
       <th style="text-align: center;"> Order Quantity</th>
       <th style="text-align: center;"> Status</th>
       <th style="text-align: center;">Order Date</th>
+      <th style="text-align: center;">Order Price</th>
       <th style="text-align: center;">Edit</th>
       <th style="text-align: center;">Delete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor= "let item of apiList">
-      <td style="text-align: center;">{{item.order_Id}}</td>
+      <!-- <td style="text-align: center;">{{item.order_Id}}</td> -->
       <td style="text-align: center;">{{ item.itemname}}</td>
       <td style="text-align: center;">{{ item.orderQuantity }}</td>
       <td style="text-align: center;">{{ item.status }}</td>
       <td style="text-align: center;">{{ item.orderDate }}</td>
+      <td style="text-align: center;">{{ item.price }}</td>
 
 
       <td>

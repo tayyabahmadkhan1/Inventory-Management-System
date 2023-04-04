@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { Input } from '@angular/core';
 import { ItemServiceService } from '../item-service.service';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
@@ -27,13 +27,13 @@ export class ItemCComponent {
     this.ItemForm = new FormGroup({
 
       'Item_Id': new FormControl(''),
-      'ItemName': new FormControl(''),
-      'Description' : new FormControl(''),
-      'Costprice': new FormControl(''),
-      'Sellprice': new FormControl(''),
+      'ItemName': new FormControl('', Validators.required),
+      'Description' : new FormControl('', Validators.required),
+      'Costprice': new FormControl('', Validators.required),
+      'Sellprice': new FormControl('', Validators.required),
       'InventoryId': new FormControl(''),
-      'ItemCategory' : new FormControl(''),
-      'StockQuantity' : new FormControl(''),
+      'ItemCategory' : new FormControl('', Validators.required),
+      'StockQuantity' : new FormControl('', Validators.required),
       'ImageUrl' : new FormControl('')
 
     })

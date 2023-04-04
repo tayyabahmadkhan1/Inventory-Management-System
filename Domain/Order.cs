@@ -8,7 +8,8 @@ namespace IMS.Models
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }
 
-        public int OrderQuantity { get; set; }
+        public string OrderQuantity { get; set; }
+        public int Price { get; set; } 
 
         // Foreign key for customer
         /*public Guid? CustomerId { get; set; }

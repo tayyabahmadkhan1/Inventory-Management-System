@@ -1,4 +1,4 @@
-<form nz-form [formGroup]= "OrderForm" (ngSubmit)= "onSubmit()">
+<form nz-form [formGroup]= "OrderForm" >
     <nz-form-item>
       <nz-form-label [nzSpan]="8" >Order Date </nz-form-label>
       <nz-form-control [nzSpan]="16">
@@ -16,91 +16,6 @@
       </nz-form-control>
     </nz-form-item>
 
-    
-    
-
-    
-    <!-- <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Customer ID </nz-form-label>
-        <nz-form-control [nzSpan]="16">
-          <input nz-input type="text" formControlName="CustomerId" placeholder="GUID Customer ID">
-        </nz-form-control>
-      </nz-form-item> -->
-
-
-      <!-- DEPENDENT DROPDOWN -->
-
-      
-      <!-- <nz-form-item>
-        <nz-form-label [nzSpan]="8">Item Category </nz-form-label>
-        <nz-form-control [nzSpan]="16">
-          <nz-select formControlName="ItemCategory" nzPlaceHolder="Choose Option">
-            <nz-option *ngFor= "let I of InventoryList" [nzLabel]="I.category"  [nzValue]= "I.category"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item> -->
-
-      
-      <nz-form-item>
-        <nz-form-label [nzSpan]="8">Item Category </nz-form-label>
-        <nz-form-control [nzSpan]="16">
-          <nz-select formControlName="ItemCategory" nzPlaceHolder="Choose Option">
-            <nz-option *ngFor= "let I of UniqueItemCategories" [nzLabel]= "I"  [nzValue]= "I"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-      
-      <nz-form-item>
-        <nz-form-label [nzSpan]="8">Item Name </nz-form-label>
-        <nz-form-control [nzSpan]="16">
-          <nz-select formControlName="ItemName" nzMode="multiple" nzPlaceHolder="Choose Option">
-            <nz-option *ngFor= "let I of filteredItemList"  [nzLabel]="I.item_name"  [nzValue]= "I.item_name"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="8" >Item Quantity</nz-form-label>
-        <nz-form-control [nzSpan]="16">
-          <input nz-input type="number" formControlName="OrderQuantity" placeholder="Qauntity">
-        </nz-form-control>
-      </nz-form-item>
-
-
-
-
-        
-      <!-- <div formArrayName= "MoreItems">
-      <div *ngFor= "let one of MoreItems.controls; index as i" [formGroupName]= "i">
-        <nz-form-item>
-          <nz-form-label [nzSpan]="8">Item Category </nz-form-label>
-          <nz-form-control [nzSpan]="16">
-            <nz-select formControlName="one.Itemcategory" nzPlaceHolder="Choose Option">
-              <nz-option *ngFor= "let I of UniqueItemCategories" [nzLabel]= "I"  [nzValue]= "I"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-        
-        <nz-form-item>
-          <nz-form-label [nzSpan]="8">Item Name </nz-form-label>
-          <nz-form-control [nzSpan]="16">
-            <nz-select formControlName="one.Itemname" nzMode="multiple" nzPlaceHolder="Choose Option">
-              <nz-option *ngFor= "let I of fItemList"  [nzLabel]= "I.item_name"  [nzValue]= "I.item_name"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-  
-        <nz-form-item>
-          <nz-form-label [nzSpan]="8" >Item Quantity</nz-form-label>
-          <nz-form-control [nzSpan]="16">
-            <input nz-input type="number" formControlName="one.Itemquantity" placeholder="Qauntity">
-          </nz-form-control>
-        </nz-form-item>
-        
-      </div>
-      <button (click)= "addItem()">Add More items</button>
-    </div> -->
-
 
 
     <div formArrayName="items">
@@ -115,25 +30,12 @@
               </nz-select>
             </nz-form-control>
           </nz-form-item>
-          <!-- <label>
-            Item Name:
-            <input formControlName="name">
-          </label> -->
-          <!-- <label>
-            Item Category:
-            <input formControlName="category">
-          </label> -->
-
-          <!-- <label>
-            Item Quantity:
-            <input formControlName="quantity">
-          </label> -->
 
           <nz-form-item>
             <nz-form-label [nzSpan]="8">Item Name </nz-form-label>
             <nz-form-control [nzSpan]="16">
               <nz-select formControlName="name" nzPlaceHolder="Choose Option">
-                <nz-option *ngFor= "let I of getfitem(i)"  [nzLabel]= "I.item_name"  [nzValue]= "I.item_name"></nz-option>
+                <nz-option *ngFor= "let I of getfitem(i)"  [nzLabel]="I.item_name + ('= ') + ' (' + I.sell_price + ')' + (' RS')"  [nzValue]= "I.item_name"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -144,18 +46,20 @@
               <input nz-input type="number" formControlName="quantity" placeholder="Qauntity">
             </nz-form-control>
           </nz-form-item>
-
-
           
         </div>
       </div>
     </div>
-    <button (click)="addItem()">Add Item</button>
 
-      
-      
+   <button  nz-icon nzType="plus-circle" nzTheme="fill" style="margin-left: 225px; text-align: left; background-color: rgb(204, 31, 66); color: rgba(255, 255, 255, 0.959);" (click)="addItem()">Item</button>
     
+      
+      
+    <br>
+    <br>
     <div class="button-container">
-      <button nz-button [nzType]= "'primary'" (click)= "onSubmit">Submit</button>
+      <br>
+      <br>
+      <button [disabled]= "OrderForm.invalid" nz-button (click)= "submit()">Submit</button>
     </div>
   </form>

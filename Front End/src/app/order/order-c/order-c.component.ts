@@ -20,10 +20,10 @@ export class OrderCComponent {
   ItemServiceObject : ItemServiceService;
   InventoryServiceObject : InventoryServiceService;
   ItemList : any []=[];
-  // InventoryList:any[]=[];
   OrderStatus: string[] = ["Pending", "In Process", "Delivered"];
   flag:any=true;
   MoreItems: FormArray;
+  TotalPrice: any;
 
   constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService, _InserviceObject:InventoryServiceService) {
     this.MoreItems = new FormArray<any>([])
@@ -31,12 +31,12 @@ export class OrderCComponent {
       MoreItems : this.MoreItems,
 
       'Order_Id': new FormControl(''),
-      'OrderDate': new FormControl(''),
-      'Status' : new FormControl(''),
-      'OrderQuantity': new FormControl(''),
+      'OrderDate': new FormControl('', Validators.required),
+      'Status' : new FormControl('', Validators.required),
+      'OrderQuantity': new FormControl(),
       'CustomerId': new FormControl(''),
       items: new FormArray([]),
-      'ItemName' : new FormControl(''),
+      'ItemName' : new FormControl([]),
       'ItemCategory': new FormControl('')
     })
 
@@ -46,7 +46,7 @@ export class OrderCComponent {
     this.InventoryServiceObject=_InserviceObject;
 
     this.GetItem();
-    // this.GetInventory();
+    this.addItem();
 
     
   }
@@ -60,6 +60,7 @@ export class OrderCComponent {
     this.OrderForm.get('OrderQuantity')?.setValue(this.value.orderQuantity);
     this.OrderForm.get('CustomerId')?.setValue(this.value.customerId);
     this.OrderForm.get('ItemName')?.setValue(this.value.itemname);
+    this.OrderForm.get('ItemPrice')?.setValue(this.value.price);
   }
 
   Add_UpdateOrder(formdata :any){
@@ -100,17 +101,9 @@ export class OrderCComponent {
     const newItem = new FormGroup({
       name: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required),
+      quantity: new FormControl('',Validators.required),
     });
     this.items.push(newItem);
-  }
-
-  CreateItem(): any {
-    return new FormGroup({
-      Itemname: new FormControl('',Validators.required),
-      Itemcategory: new FormControl('',Validators.required),
-      Itemquantity: new FormControl('',Validators.required)
-    });
   }
 
 
@@ -121,23 +114,49 @@ export class OrderCComponent {
      }));
   }
 
-  // GetInventory(){
-  //   this.InventoryServiceObject.GetInventory().subscribe((Response =>{
-  //     console.log(Response)
-  //     this.InventoryList = Response;
-  //    }));
-  // }
+  calculateTotalPrice() {
+    let totalPrice = 0;
+    const items = this.OrderForm.get('items') as FormArray;
+    for (let i = 0; i < items.length; i++) {
+      const name = items.controls[i].get('name')?.value;
+      const quantity = items.controls[i].get('quantity')?.value;
+      const item = this.ItemList.find(item => item.itemname === name);
+      if (item) {
+        const sellPrice = item.sellprice;
+        console.log('1',item.sellprice);
+        console.log('2',item.sell_price);
+        totalPrice += quantity * sellPrice;
+      }
+    }
+    this.TotalPrice = totalPrice;
+  }
+  
 
   onSubmit(){
+    // this.Add_UpdateOrder(formData);
+    // this.drawerRef.close();
+  }
+
+  totalprice(){
+    let total = 0;
+    this.ItemList.forEach((item)=>{
+      total += this.OrderForm.value.OrderQuantity * item.SellPrice;
+    });
+    return total;
+  }
+
+
+  submit(){
+
     let formData = new FormData();
 
     if(this.value.order_Id==null)//Add
     {
       formData.append('orderDate',this.OrderForm.value.OrderDate);
       formData.append('status',this.OrderForm.value.Status);
-      formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
-      formData.append('customerId',this.OrderForm.value.CustomerId);
-      formData.append('itemname',this.OrderForm.value.ItemName.join(' , '));
+  
+      formData.append('itemname', this.OrderForm.value.items.map((item: any ) => item.name).join(', '));
+      formData.append('orderQuantity', this.OrderForm.value.items.map((item:any ) => item.quantity).join(', '));
 
     }
     else//Update
@@ -145,11 +164,47 @@ export class OrderCComponent {
       formData.append('order_Id',this.OrderForm.value.Order_Id);
       formData.append('orderDate',this.OrderForm.value.OrderDate);
       formData.append('status',this.OrderForm.value.Status);
-      formData.append('orderQuantity',this.OrderForm.value.OrderQuantity);
-      formData.append('customerId',this.OrderForm.value.CustomerId);
-      formData.append('itemname',this.OrderForm.value.ItemName.join(' , '));
+
+      formData.append('itemname', this.OrderForm.value.items.map((item: { name: any; }) => item.name).join(', '));
+      formData.append('orderQuantity', this.OrderForm.value.items.map((item: { quantity: any; }) => item.quantity).join(', '));
     }
+
+    let namesArray:any[]=[];
+    let quantityArray:any[]=[];
+    let sum=0;
+
+
+    let totalPrice:any = 0;
+    const itemNames:any = formData.get('itemname');
+    const orderNames:any = formData.get('orderQuantity');
+
+    
+      namesArray = itemNames.split(', ');
+      quantityArray = orderNames.split(', ');
+
+    console.log('11',quantityArray[0])
+    console.log('12',namesArray[0])
+
+    console.log('21',quantityArray[1])
+    console.log('22',namesArray[1])
+
+
+      for (let i = 0; i < itemNames.length; i++) {
+        let itemName = namesArray[i];
+        let orderQuantity = parseInt(quantityArray[i]);
+        let item = this.ItemList.find((item) => item.item_name === itemName);
+        if (item) {
+          console.log(item.item_name,": ",item.sell_price);
+
+          sum= item.sell_price * orderQuantity;
+          totalPrice=sum + totalPrice;
+        }
+    }
+
+    formData.append('price',totalPrice);
+
     this.Add_UpdateOrder(formData);
+
     this.drawerRef.close();
   }
 }

@@ -48,11 +48,12 @@
         <td style="text-align: center;">{{ item.sell_price}}</td>
 
         <td>
-          <button  style="margin-left: 10px; color: beige; background-color: coral;" type="button" (click)= "EditItem(item)">Edit</button>
+          <button nz-icon nzType="edit" nzTheme="twotone"  (click)= "EditItem(item)"></button>
         </td>
 
         <td>
-          <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteItem(item.item_Id)">Delete</button>
+          <button nz-icon nzType="delete" nzTheme="twotone" (click)= "DeleteItem(item.item_Id)"></button>
+          <!-- <button style="margin-left: 10px; color: beige; background-color: rgb(192, 49, 49);" type="button" (click)= "DeleteItem(item.item_Id)">Delete</button> -->
         </td>
         
 

@@ -10,6 +10,7 @@ namespace IMS.Models
 
         public string OrderQuantity { get; set; }
         public int Price { get; set; } 
+        public int Cprice { get; set; }
 
         // Foreign key for customer
         /*public Guid? CustomerId { get; set; }

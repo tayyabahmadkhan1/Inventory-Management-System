@@ -15,9 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { InventoryCComponent } from './inventory-c/inventory-c.component';
 
 
-// const routes: Routes = [
-//   { path: '', component: InventoryDrawerComponent }   YET TO MAKE DRAWER COMPONENT
-// ];
+const routes: Routes = [
+  { path: '', component: InventoryCComponent } 
+];
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { InventoryCComponent } from './inventory-c/inventory-c.component';
   ],
   imports: [
     CommonModule,
-    // RouterModule.forChild(routes),
+    RouterModule.forChild(routes),
     NzFormModule,
     ReactiveFormsModule,
     NzTypographyModule,
@@ -40,4 +40,5 @@ import { InventoryCComponent } from './inventory-c/inventory-c.component';
   bootstrap: [InventoryCComponent],
   providers:[NzDrawerService,NzNotificationService]
 })
+
 export class InventoryModule { }

@@ -6,6 +6,7 @@ import { ItemServiceService } from 'src/app/item/item-service.service';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { InventoryServiceService } from 'src/app/inventory/inventory-service.service';
+import { ItemCComponent } from 'src/app/item/item-c/item-c.component';
 
 @Component({
   selector: 'app-order-c',
@@ -20,10 +21,11 @@ export class OrderCComponent {
   ItemServiceObject : ItemServiceService;
   InventoryServiceObject : InventoryServiceService;
   ItemList : any []=[];
-  OrderStatus: string[] = ["Pending", "In Process", "Delivered"];
+  OrderStatus: string[] = ["Cancelled", "In Process", "Delivered"];
   flag:any=true;
   MoreItems: FormArray;
   TotalPrice: any;
+  ItemComponent :  ItemCComponent | any;
 
   constructor(private drawerRef: NzDrawerRef<string>, _serviceObject : OrderServiceService,private notification : NzNotificationService, _IserviceObject:ItemServiceService, _InserviceObject:InventoryServiceService) {
     this.MoreItems = new FormArray<any>([])
@@ -84,6 +86,27 @@ export class OrderCComponent {
   getfitem(index:any){
     const category = this.items.controls[index].get('category')?.value;
     return this.ItemList.filter((I) => I.itemcategory === category);
+  }
+
+  getstock(index:any){
+    const name = this.items.controls[index].get('name')?.value;
+    let filteredItems=this.ItemList.filter((I) => I.item_name === name);
+    if (filteredItems.length > 0) {
+      return filteredItems[0].stockquantity;
+    }
+    return null;
+  }
+
+  updateStockQ(name:any , sQuantity:any){
+
+    for(let i=0; i<this.ItemList.length ; i++)
+    {
+      if(this.ItemList[i].item_name === name)
+      {
+        this.ItemList[i].stockquantity = this.ItemList[i].stockquantity - sQuantity;
+      }
+
+    } 
 
   }
 
@@ -109,8 +132,14 @@ export class OrderCComponent {
 
   GetItem(){
     this.ItemServiceObject.GetItem().subscribe((Response =>{
-      console.log(Response)
       this.ItemList = Response;
+     }));
+  }
+
+  Add_UpdateItem(formdata :any){
+
+    this.ItemServiceObject.Add_UpdateItem(formdata).subscribe((Response =>{
+      console.log('AddUpdateItem',Response);
      }));
   }
 
@@ -146,6 +175,9 @@ export class OrderCComponent {
   }
 
 
+ 
+
+
   submit(){
 
     let formData = new FormData();
@@ -172,9 +204,11 @@ export class OrderCComponent {
     let namesArray:any[]=[];
     let quantityArray:any[]=[];
     let sum=0;
+    let sum2=0;
 
 
     let totalPrice:any = 0;
+    let costPrice:any=0;
     const itemNames:any = formData.get('itemname');
     const orderNames:any = formData.get('orderQuantity');
 
@@ -182,28 +216,59 @@ export class OrderCComponent {
       namesArray = itemNames.split(', ');
       quantityArray = orderNames.split(', ');
 
-    console.log('11',quantityArray[0])
-    console.log('12',namesArray[0])
-
-    console.log('21',quantityArray[1])
-    console.log('22',namesArray[1])
-
 
       for (let i = 0; i < itemNames.length; i++) {
         let itemName = namesArray[i];
         let orderQuantity = parseInt(quantityArray[i]);
         let item = this.ItemList.find((item) => item.item_name === itemName);
         if (item) {
-          console.log(item.item_name,": ",item.sell_price);
+          console.log(item.item_name,": ",item.sell_price,orderQuantity);
+
+          this.updateStockQ(item.item_name,orderQuantity);
 
           sum= item.sell_price * orderQuantity;
+          sum2= item.cost_price * orderQuantity;
+
           totalPrice=sum + totalPrice;
+          costPrice=sum2 + costPrice;
         }
     }
 
     formData.append('price',totalPrice);
+    formData.append('cprice',costPrice);
 
+    
     this.Add_UpdateOrder(formData);
+    console.log('ItemList',this.ItemList);
+
+    
+
+
+    for(let i=0; i<this.ItemList.length; i++)
+    {
+      let formData2 = new FormData();
+      console.log("working", i)
+      let item = this.ItemList[i];
+      formData2.append('item_Id',item.item_Id);
+
+      formData2.append('item_name',item.item_name);
+
+      formData2.append('description',item.description);
+      formData2.append('cost_price',item.cost_price);
+      formData2.append('sell_price',item.sell_price);
+      formData2.append('inventoryIdItems',item.inventoryIdItems);
+     
+      formData2.append('stockquantity',item.stockquantity);
+      
+      formData2.append('imageurl',item.imageurl);
+      formData2.append('itemcategory', item.itemcategory);
+
+      this.Add_UpdateItem(formData2);
+    }
+
+    this.GetItem();
+
+    
 
     this.drawerRef.close();
   }

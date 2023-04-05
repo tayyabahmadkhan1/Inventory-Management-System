@@ -15,6 +15,7 @@ import { ItemDrawerComponent } from './item-drawer/item-drawer.component';
 import { ItemCComponent } from './item-c/item-c.component';
 import { FormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 const routes: Routes = [
   { path: '', component: ItemDrawerComponent }
@@ -38,7 +39,8 @@ const routes: Routes = [
     NzDividerModule,
     NzCardModule,
     FormsModule,
-    NzSelectModule
+    NzSelectModule,
+    NzIconModule
   ],
   exports: [RouterModule],
   bootstrap: [ItemCComponent],

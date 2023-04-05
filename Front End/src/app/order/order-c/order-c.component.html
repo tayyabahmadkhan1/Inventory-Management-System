@@ -43,7 +43,7 @@
           <nz-form-item>
             <nz-form-label [nzSpan]="8" >Item Quantity</nz-form-label>
             <nz-form-control [nzSpan]="16">
-              <input nz-input type="number" formControlName="quantity" placeholder="Qauntity">
+              <input nz-input type="number" formControlName="quantity" placeholder="Qauntity" min="1" max="{{getstock(i)}}">
             </nz-form-control>
           </nz-form-item>
           

@@ -1,1 +1,14 @@
-<p>inventory-c works!</p>
+<h1>REPORTS</h1>
+
+<input  [(ngModel)]= "month" type="number" min="1" max="12" placeholder="Enter Month">
+<br>
+<br>
+
+<input [(ngModel)]= "year" type="number" min="2015" max="2023" placeholder="Enter Year">
+<br>
+<br>
+
+
+<button  (click)= "monthlyProfit(month,year)">See Monthly Profit</button>
+
+<p>{{profit}}</p>

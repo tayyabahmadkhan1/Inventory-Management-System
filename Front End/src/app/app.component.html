@@ -19,9 +19,10 @@
       nzTooltipPlacement="right"
       [nzTooltipTitle]="isCollapsed ? 'Admin' : ''"
       >
-      <span nz-icon nzType="github"></span>
+      <span nz-icon  nzType="user"></span>
       <span>Admin</span>
       </li>
+
 
       <li routerLink="/warehouse"
       nz-menu-item
@@ -51,6 +52,16 @@
       >
       <span  nz-icon nzType="appstore"></span>
       <span >Inventory</span>
+      </li>
+
+      <li routerLink="/report"
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      [nzTooltipTitle]= "isCollapsed ? 'Inventory' : ''"
+      >
+      <span  nz-icon nzType="line-chart"></span>
+      <span >Report</span>
       </li>
 
       
